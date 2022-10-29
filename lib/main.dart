@@ -7,6 +7,7 @@ import 'package:untitled/news.dart';
 import 'package:untitled/screens/coversation_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/screens/profileScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -169,8 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
           newDay < 10) {
         count++;
       }
-      print(
-          "merhaba ${newsRepository.news[0].newsSubtitle[i].substring(4, 5)} ,$count");
+      print("merhaba ${newsRepository.news[0].newsSubtitle[i].substring(4, 5)} ,$count");
     }
     return count;
   }
@@ -243,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ListView.separated(
               physics: BouncingScrollPhysics(),
-              itemCount: 5,
+              itemCount: charactersRepository.characters.length,
               shrinkWrap: true,
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(
@@ -266,10 +266,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     );
                   },
-                  leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(charactersRepository
-                        .characters[index].circleAvatarImage),
+                  leading: InkWell(
+                    onTap: (){
+                      setState(() {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) {
+                                return ProfileScreen(index);}),);
+                      });
+                    },
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(charactersRepository
+                          .characters[index].circleAvatarImage),
+                    ),
                   ),
                   trailing: Icon(Icons.push_pin),
                   title: Text(

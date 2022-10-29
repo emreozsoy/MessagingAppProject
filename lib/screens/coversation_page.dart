@@ -9,6 +9,7 @@ import 'package:untitled/charactersText.dart';
 import 'package:untitled/messages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:untitled/screens/profileScreen.dart';
 const int maxFailedLoadAttempts = 3;
 
 class ConversationPage extends StatefulWidget {
@@ -69,6 +70,7 @@ class _ConversationPageState extends State<ConversationPage>
     dataHandle();
     goodAnswr();
     _createRewardedAd();
+    scrollMssg();
   }
 
   Future<void> dataHandle() async { // her sayfaya bir kere girildiği için dğeiştirilmeli first time
@@ -81,11 +83,19 @@ class _ConversationPageState extends State<ConversationPage>
       equalData();
     }
   }
+  Future<void> scrollMssg() async {
+
+    await Future.delayed(Duration(milliseconds:100));
+    print("BAKBAKİM");
+    _scrollController.jumpTo(_scrollController
+        .position.maxScrollExtent);
+  }
 
 
   @override
   void dispose() {
     _animationController?.dispose();
+    _scrollController.dispose();
     saveData();
     super.dispose();
     _rewardedAd?.dispose();
@@ -191,20 +201,39 @@ class _ConversationPageState extends State<ConversationPage>
           title: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              CircleAvatar(
-                  backgroundImage: AssetImage(charactersRepository
-                      .characters[widget.index]
-                      .circleAvatarImage) //ImageProvider("images/bot1"),
+
+              InkWell(
+                onTap: (){
+                    Navigator.of(context).push(
+                    MaterialPageRoute(
+                    builder: (context) {
+                    return ProfileScreen(widget.index);}),);
+
+                },
+                child: CircleAvatar(
+                    backgroundImage: AssetImage(charactersRepository
+                        .characters[widget.index]
+                        .circleAvatarImage) //ImageProvider("images/bot1"),
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  _isButtonDisabled
-                      ? typing[type]
-                      : charactersRepository.characters[widget.index]
-                      .nameWithSurname(),
-                  style: TextStyle(fontSize: 20),
-                ), //font ayarla
+              InkWell(
+                onTap: (){
+                  setState(() {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) {
+                            return ConversationPage(widget.index);}),);                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    _isButtonDisabled
+                        ? typing[type]
+                        : charactersRepository.characters[widget.index]
+                        .nameWithSurname(),
+                    style: TextStyle(fontSize: 20),
+                  ), //font ayarla
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -222,6 +251,7 @@ class _ConversationPageState extends State<ConversationPage>
                         fontWeight: FontWeight.bold,
                       ),
                     )),
+
               ),
             ],
           ),
@@ -256,7 +286,6 @@ class _ConversationPageState extends State<ConversationPage>
                   messagesRepository.messages[widget.index].msg.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-
                     /* _scrollController.animateTo(
                       _scrollController.position.maxScrollExtent,
                       curve: Curves.ease,
@@ -479,36 +508,71 @@ class _ConversationPageState extends State<ConversationPage>
   }
 
   Future<void> botResponse() async {
+    int answerCounter=0,firstMsg=0;
+    final whichPoint = <int>[];
+    print(textPos);
+
+    for (int i =0; i< charactersTextRepository.charactersText[widget.index].numberMssg.length;i++) {
+      if (charactersTextRepository.charactersText[widget.index].numberMssg[i] == textPos) {
+        answerCounter++;
+        whichPoint.add(i);
+        print(" Item === ${charactersTextRepository.charactersText[widget.index].numberMssg[i]}");
+      }
+
+      /*if(answerCounter>1){
+        whichPoint.add()[0]=item;
+        whichPoint[answerCounter]=item;
+        print("Bende ${item}");
+      }*/
+    }
+    print(" GrowableList= ${whichPoint}");
+   // print("AnsweCounter= ${answerCounter}");
+    while(answerCounter>0) {
+      setState(() {
+        type = 1;
+        messagesRepository.messages[widget.index].user.add("Bot");
+        print(textPos);
+      });
+      await Future.delayed(Duration(seconds: random(1,2)));
+      setState(() {
+        type = 2;
+        print("AnsweCounter= ${answerCounter}");
+
+
+        if(firstMsg==0){
+          firstMsg++;
+          messagesRepository.messages[widget.index].msg.add(
+              charactersTextRepository
+                  .charactersText[widget.index].text
+                  .elementAt(textPos));
+        }
+        else{
+          messagesRepository.messages[widget.index].msg.add(
+              charactersTextRepository
+                  .charactersText[widget.index].text
+                  .elementAt(whichPoint[answerCounter]));
+
+        }
+        answerCounter--;
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          curve: Curves.ease,
+          duration: const Duration(milliseconds: 300),
+        );
+      });
+      await Future.delayed(Duration(seconds: random(1,2)));
+      setState(() {
+        type = 3;
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          curve: Curves.ease,
+          duration: const Duration(milliseconds: 300),
+        );
+      });
+    }
     setState(() {
-      type = 1;
-      messagesRepository.messages[widget.index].user.add("Bot");
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 300),
-      );
-    });
-    await Future.delayed(Duration(seconds: random(2, 5)));
-    setState(() {
-      type = 2;
-      messagesRepository.messages[widget.index].msg.add(charactersTextRepository
-          .charactersText[widget.index].text
-          .elementAt(textPos));
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 300),
-      );
-    });
-    await Future.delayed(Duration(seconds: random(2, 5)));
-    setState(() {
-      type = 3;
+      whichPoint.removeRange(0, whichPoint.length);
       _isButtonDisabled = false;
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 300),
-      );
       textPos = textPos + 3;
     });
   }
@@ -525,7 +589,9 @@ class _ConversationPageState extends State<ConversationPage>
         print(prefs.getInt('energy'));
     });
   }
-  Future<void> saveData() async {
+  void saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+
           await prefs.setInt('textPos${widget.index}', textPos);
           await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
           await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
