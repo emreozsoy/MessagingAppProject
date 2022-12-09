@@ -9,7 +9,8 @@ class CharactersTextRepository{
       "Aynen öyle, gayet iyi genç padawan. Öğle yemeklerinde yalnız kalırsan bana katılabilirsin. Okulda başarılar.",
       "----------",
 
-      "Konuşma burda bitiyor1.",
+      "images/bot4.png",
+      "Merhaba",
       "Konuşma burda bitiyor2.",
       "Konuşma burda bitiyor3.",
 
