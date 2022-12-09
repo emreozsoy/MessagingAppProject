@@ -5,27 +5,33 @@ class CharactersTextRepository{
       "Tanıştığımıza sevindim, ben okul başkanıyım. Sana biraz işleyişten bahsetsem iyi olur sanırım. Okul içerisinde gerekmedikçe birbirimizle diyalog kurmamız yasak. Bu yüzden herkes mesajlaşarak iletişim kurar. ",
       "Biraz asabisin sanırım, burada önemli olan iyi bir sosyal ağ kurabilmek. Herkes bu üslubu hoş karşılamayabilir 😊. Her neyse, ben okul başkanıyım. Okul içerisinde gerekmedikçe birbirimizle diyalog kurmamız yasak. Bu yüzden herkes mesajlaşarak iletişim kurar. ",
 
-      ":D. Okul kurucuları hakkında böyle konuşmak fena değilmiş.",
+      "images/Musuem.png",
       "Aynen öyle, gayet iyi genç padawan. Öğle yemeklerinde yalnız kalırsan bana katılabilirsin. Okulda başarılar.",
       "----------",
 
+<<<<<<< Updated upstream
       "images/bot4.png",
       "Merhaba",
+=======
+      "images/Musuem2.png",
+>>>>>>> Stashed changes
       "Konuşma burda bitiyor2.",
       "Konuşma burda bitiyor3.",
 
+      "images/bot1.png",
       "Konuşma burda bitiyor4.",
       "Konuşma burda bitiyor5.",
-      "Konuşma burda bitiyor6.",
 
-      "Bu yüzden herkes mesajlaşarak iletişim kurar.",
-      "Sana biraz işleyişten bahsetsem iyi olur sanırım. Okul içerisinde gerekmedikçe birbirimizle diyalog kurmamız yasak.",
+      "images/Musuem.png",
+      "images/Musuem2.png",
+
+      "images/bot3.png",
 
 
       "Öğle yemeklerinde yalnız kalmazsın umarım.",
       "Byee",
       "---",
-    ],[0,1,2,3,4,5,6,7,8,9,10,11,0,0,3,3]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
+    ],[0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,0,3,3]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
 
     /* BOT2         */
     CharactersText(["Böyle konuşmaya devam edersen canından olursun","HAHAHAHAHA,.",
@@ -36,7 +42,7 @@ class CharactersTextRepository{
       "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
 
     /*      BOT4    */
-    CharactersText(["Ben de yenilikleri severim. Adım cicikız ","Selam, ben Karakter4.",
+    CharactersText(["Ben de yenilikleri severim. Adım  ","Selam, ben Karakter4.",
       "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
 
     /*    BOT5     */

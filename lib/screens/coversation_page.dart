@@ -31,6 +31,8 @@ class _ConversationPageState extends State<ConversationPage>
     nonPersonalizedAds: true,
   );
 
+
+
   RewardedAd? _rewardedAd;
   int _numRewardedLoadAttempts = 0;
 
@@ -57,6 +59,7 @@ class _ConversationPageState extends State<ConversationPage>
   int textPos = 0;
   double per = 0;
   double perStatic = 0;
+
 
   @override
   initState() {
@@ -291,6 +294,7 @@ class _ConversationPageState extends State<ConversationPage>
                       curve: Curves.ease,
                       duration: const Duration(seconds: 100),
                     );    */
+
                     return ListTile(
                       title: Align(
                           alignment: messagesRepository
@@ -300,25 +304,32 @@ class _ConversationPageState extends State<ConversationPage>
                               : Alignment.centerLeft,
 
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
+                            borderRadius: BorderRadius.circular(20.0),
                             child: Container(
                               padding: EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
-                                color: messagesRepository
-                                    .messages[widget.index]
-                                    .user[index] !=
-                                    "Bot"
-                                    ? Colors.lightGreen
-                                    : Colors.deepPurpleAccent.shade100,
-
+                                color:SelecBoxColor(index),
                               ),
 
-                              child: Text(
-                                messagesRepository
+                              child: Stack(
+                                children:[
+
+                                  messagesRepository
+                                      .messages[widget.index].msg[index].contains(".png")
+                                ?ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset(messagesRepository
+                                      .messages[widget.index].msg[index],
+                                        width: 150,
+                                        height: 150,
+                                        
+                                        fit:BoxFit.cover),
+                                )
+                                : Text(messagesRepository
                                     .messages[widget.index].msg[index],
-                                style: TextStyle(color: Colors.white),
-
-                              ),
+                                    style: TextStyle(color: Colors.white)
+                                  ),
+                                ],),
 
                             ),
                           )
@@ -581,7 +592,7 @@ class _ConversationPageState extends State<ConversationPage>
     final prefs = await SharedPreferences.getInstance();
     //await Future.delayed(Duration(seconds: random(4, 7)));
     setState(() {
-         textPos = prefs.getInt('textPos${widget.index}') ?? 0;
+        textPos = prefs.getInt('textPos${widget.index}') ?? 0;
         messagesRepository.messages[widget.index].msg= prefs.getStringList('messages${widget.index}')!;//Giving null
         messagesRepository.messages[widget.index].user= prefs.getStringList("mssgSend${widget.index}")!;
         charactersPointRepository.characterPoint[widget.index].sumPoint = prefs.getInt('prefSum${widget.index}')!;
@@ -592,11 +603,13 @@ class _ConversationPageState extends State<ConversationPage>
   void saveData() async {
     final prefs = await SharedPreferences.getInstance();
 
-          await prefs.setInt('textPos${widget.index}', textPos);
-          await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
-          await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
-          await prefs.setInt('prefSum${widget.index}',charactersPointRepository.characterPoint[widget.index].sumPoint );
-          await prefs.setInt('energy',energy);
+    await prefs.setInt('textPos${widget.index}', textPos);
+    await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
+    await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
+    await prefs.setInt('prefSum${widget.index}',charactersPointRepository.characterPoint[widget.index].sumPoint );
+    await prefs.setInt('energy',energy);
+
+  //  await prefs.clear(); delete all prefs
 
   }
   Path _buildHeartPath() {
@@ -621,6 +634,33 @@ class _ConversationPageState extends State<ConversationPage>
         }
         else{return false;}
   }
+
+Color?  SelecBoxColor(int index) {
+  /* color : messagesRepository
+      .messages[widget.index]
+      .user[index] !=
+      "Bot"
+      ? Colors.lightGreen
+      : Colors.deepPurpleAccent.shade100,*/
+
+
+  if(messagesRepository
+      .messages[widget.index].msg[index].contains(".png")){
+    return Colors.deepPurpleAccent.shade100;
+  }
+    else if (messagesRepository
+        .messages[widget.index]
+        .user[index]=="Bot"){
+
+      return Colors.deepPurpleAccent.shade100;
+
+    }
+
+    else{
+      return Colors.lightGreen;
+    }
+
+}
 
 }
 
