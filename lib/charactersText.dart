@@ -1,44 +1,40 @@
 class CharactersTextRepository{
   final List<CharactersText> charactersText=[
-    CharactersText([
-      "Tanıştığımıza sevindim, ben okul başkanıyım. ",
-      "Tanıştığımıza sevindim, ben okul başkanıyım. Sana biraz işleyişten bahsetsem iyi olur sanırım. Okul içerisinde gerekmedikçe birbirimizle diyalog kurmamız yasak. Bu yüzden herkes mesajlaşarak iletişim kurar. ",
-      "Biraz asabisin sanırım, burada önemli olan iyi bir sosyal ağ kurabilmek. Herkes bu üslubu hoş karşılamayabilir 😊. Her neyse, ben okul başkanıyım. Okul içerisinde gerekmedikçe birbirimizle diyalog kurmamız yasak. Bu yüzden herkes mesajlaşarak iletişim kurar. ",
+  CharactersText([
+  "Selam",
+  "Selam, biraz meşgulüm şuanda sen nasılsın?",
+  "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
 
-      "images/Musuem.png",
-      "Aynen öyle, gayet iyi genç padawan. Öğle yemeklerinde yalnız kalırsan bana katılabilirsin. Okulda başarılar.",
-      "----------",
+  "Ben adım da Deniz, bende memnun oldum",
+  "Vaktimi belki ayırabilirim senin için önemli bir konu mu?",
+  "Bir kahveye hayır demem"
 
-<<<<<<< Updated upstream
-      "images/bot4.png",
-      "Merhaba",
-=======
-      "images/Musuem2.png",
->>>>>>> Stashed changes
-      "Konuşma burda bitiyor2.",
-      "Konuşma burda bitiyor3.",
+  "Görüşmek üzere!!",
+  "Bye byee!",
+  "images/Musuem.png",
 
-      "images/bot1.png",
-      "Konuşma burda bitiyor4.",
-      "Konuşma burda bitiyor5.",
-
-      "images/Musuem.png",
-      "images/Musuem2.png",
-
-      "images/bot3.png",
-
-
-      "Öğle yemeklerinde yalnız kalmazsın umarım.",
-      "Byee",
-      "---",
-    ],[0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,0,3,3]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
+  "Orda görüşmek üzere!"
+  ],[0,1,2,3,4,5,6,7,8,8]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
 
     /* BOT2         */
-    CharactersText(["Böyle konuşmaya devam edersen canından olursun","HAHAHAHAHA,.",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Merhaba Karakter2","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
+    CharactersText([
+      "Selam",
+      "Selam, biraz meşgulüm şuanda sen nasılsın?",
+      "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
+
+      "Ben adım da Deniz, bende memnun oldum",
+      "Vaktimi belki ayırabilirim senin için önemli bir konu mu?",
+      "Bir kahveye hayır demem",
+
+      "Görüşmek üzere!!",
+      "Bye byee!",
+      "images/Musuem.png",
+
+      "Orda görüşmek üzere!"
+    ],[0,1,2,3,4,5,6,7,8,8]),
 
     /*BOT3*/
-    CharactersText(["Ben de yenilikleri severim. Adım cicikız ","Selam, ben Karakter3",
+    CharactersText(["Ben de yenilikleri severim. ","Selam, ben Karakter3",
       "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
 
     /*      BOT4    */
@@ -49,26 +45,49 @@ class CharactersTextRepository{
     CharactersText(["Ben de yenilikleri severim. Adım Karakter5 ","Selam, ben Karakter5.",
       "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
 
-    /*  PLAYER        */
-    CharactersText([""
-        "Selamm, ben de yenilikleri severim! Hoş buldum,benim adım ... ","Selamlar, ben ...",
-      "Sen karşılama komitesisin sanırım, ben ...",
+    /*  PLAYER -TextBot1        */
+    CharactersText([
+      " Merhaba!!",
+      "Selamlar nasılsın",
+      "Tanışabilir miyiz? Okulda görmüştüm seni",
 
-      "Biraz saçma bir kural.Kim karar vermiş ki buna? ",
-      "Sanırım derslere daha iyi odaklanmamız için böyle yapılmış, devam et lütfen. ",
-      "------",
+      "Ben Karakter A, tanıştığıma memnun oldum",
+      "Yoğunsan meşgul etmek istemem",
+      "İstersen okulda kahve içebiliriz.",
 
-      "Biraz sert bir mizacım var, kırıcı olmak istememiştim kusura bakma. Okulda umarım görüşebiliriz. ",
-      "Mutlaka uğrayacağım, teşekkür ederimm. Okulda görüşürüz :D ",
-      "Yalnız kalıp kalmamamı neden umursayasın ki? Verdiğin bilgiler için teşekkürler, kendi başımın çaresine bakarım",
+      "Okulda umarım görüşebiliriz. ",
+      "Sadece tanışmak istemiştim okulda görüşürüz!!",
+      "Tamamdır byee",
 
-      "Deneme",
-      "Deneme2",
-      "Deneme3",
+      "----",
+      "----",
+      "----",
 
       "ListeBitti1","ListeBitti2", "ListeBitti3",
 
       " sa","dsa","dsa","sda"],[0]),
+
+    /*  PLAYER -TextBot2        */
+    CharactersText([
+      "Merhaba!!",
+      "Selamlar nasılsın",
+      "Tanışabilir miyiz? Okulda görmüştüm seni",
+
+      "Ben Karakter A, tanıştığıma memnun oldum",
+      "Yoğunsan meşgul etmek istemem",
+      "İstersen okulda kahve içebiliriz.",
+
+      "Okulda umarım görüşebiliriz. ",
+      "Sadece tanışmak istemiştim okulda görüşürüz!!",
+      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
+
+      "Text Bitti",
+      "Text Bitti",
+      "Text Bitti",
+
+      "ListeBitti1","ListeBitti2", "ListeBitti3",
+
+      " sa","dsa","dsa","sda"],[0])
   ];
 
 }

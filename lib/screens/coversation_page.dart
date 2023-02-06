@@ -89,7 +89,6 @@ class _ConversationPageState extends State<ConversationPage>
   Future<void> scrollMssg() async {
 
     await Future.delayed(Duration(milliseconds:100));
-    print("BAKBAKİM");
     _scrollController.jumpTo(_scrollController
         .position.maxScrollExtent);
   }
@@ -366,8 +365,8 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     _isButtonDisabled = true;
                                     setState(() {
-                                      playerResponse();
-                                      botResponse();
+                                      playerResponse(1);
+                                      botResponse(1);
                                     });
                                     _scrollController.jumpTo(_scrollController
                                         .position.maxScrollExtent);
@@ -408,8 +407,8 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     _isButtonDisabled = true;
                                     setState(() {
-                                      playerResponse();
-                                      botResponse();
+                                      playerResponse(2);
+                                      botResponse(2);
                                     });
                                     _scrollController.jumpTo(_scrollController
                                         .position.maxScrollExtent);
@@ -439,6 +438,7 @@ class _ConversationPageState extends State<ConversationPage>
                                       .elementAt(textPos + 1),
                                   textAlign: TextAlign.center,
                                 ),
+
                               ),
                             ),
                             ClipRRect(
@@ -450,8 +450,8 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     _isButtonDisabled = true;
                                     setState(() {
-                                      playerResponse();
-                                      botResponse();
+                                      playerResponse(3);
+                                      botResponse(3);
                                     });
                                     _scrollController.jumpTo(_scrollController
                                         .position.maxScrollExtent);
@@ -504,12 +504,22 @@ class _ConversationPageState extends State<ConversationPage>
     return type[3];
   }
 
-  void playerResponse() {
+  void playerResponse(int whichText) { //Burdaki ifler fazla
     setState(() {
       type = 3;
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      messagesRepository.messages[widget.index].msg.add(
-          charactersTextRepository.charactersText[5].text.elementAt(textPos));
+      if(whichText == 1){
+        messagesRepository.messages[widget.index].msg.add(
+            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos));
+      }
+      else if(whichText==2){
+        messagesRepository.messages[widget.index].msg.add(
+            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+1));
+      }
+      else if(whichText==3){
+        messagesRepository.messages[widget.index].msg.add(
+            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+2));
+      }
       messagesRepository.messages[widget.index].user.add("Player");
     });
   }
@@ -518,10 +528,9 @@ class _ConversationPageState extends State<ConversationPage>
     return min + Random().nextInt(max - min);
   }
 
-  Future<void> botResponse() async {
+  Future<void> botResponse(int whichText) async {
     int answerCounter=0,firstMsg=0;
     final whichPoint = <int>[];
-    print(textPos);
 
     for (int i =0; i< charactersTextRepository.charactersText[widget.index].numberMssg.length;i++) {
       if (charactersTextRepository.charactersText[widget.index].numberMssg[i] == textPos) {
@@ -550,12 +559,29 @@ class _ConversationPageState extends State<ConversationPage>
         print("AnsweCounter= ${answerCounter}");
 
 
-        if(firstMsg==0){
+        if(firstMsg==0 && whichText == 1){ // burdaki ifler fazla
           firstMsg++;
           messagesRepository.messages[widget.index].msg.add(
               charactersTextRepository
                   .charactersText[widget.index].text
                   .elementAt(textPos));
+        }
+        else if(firstMsg==0 && whichText == 2 ){
+
+            firstMsg++;
+            messagesRepository.messages[widget.index].msg.add(
+                charactersTextRepository
+                    .charactersText[widget.index].text
+                    .elementAt(textPos+1));
+
+        }
+        else if(firstMsg==0 && whichText == 3 ){
+
+          firstMsg++;
+          messagesRepository.messages[widget.index].msg.add(
+              charactersTextRepository
+                  .charactersText[widget.index].text
+                  .elementAt(textPos+2));
         }
         else{
           messagesRepository.messages[widget.index].msg.add(
@@ -642,7 +668,6 @@ Color?  SelecBoxColor(int index) {
       "Bot"
       ? Colors.lightGreen
       : Colors.deepPurpleAccent.shade100,*/
-
 
   if(messagesRepository
       .messages[widget.index].msg[index].contains(".png")){

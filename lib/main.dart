@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Love Messenger'),
+      home: MyHomePage(title: 'Chat Messenger'),
     );
   }
 }
@@ -226,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ],
-          title: const Text('Love Messenger 💕'),
+          title: const Text('Chat Messenger 💕'),
           bottom: const TabBar(
             indicatorColor: Colors.grey,
             tabs: <Widget>[

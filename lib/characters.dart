@@ -1,11 +1,11 @@
 class CharactersRepository{
   final List<Characters> characters= [
-    Characters("Karakter ", "B", 19, "Kız","images/bot1.png"),
-    Characters("Ebru ", "Şahin", 16,"Kız","images/bot2.png"),
-    Characters("Erdem ", "Demirci", 19, "Erkek","images/bot3.png"),
-    Characters("Berat Can ", "Katanalp", 25, "Erkek","images/bot4.png"),
-    Characters("Player ", "1", 25, "Erkek","images/bot1.png"),
-
+    // K => Kadın - E => Erkek
+    Characters("Karakter ", "A", 19, "K","images/bot1.png"),
+    Characters("Deniz ", "Şahin", 16,"K","images/bot2.png"),
+    Characters("Erdem ", "Demirci", 19, "E","images/bot3.png"),
+    Characters("Berat Can ", "Katanalp", 25, "E","images/bot4.png"),
+    Characters("Player ", "PlayerSurname", 25, "E","images/bot1.png"),
   ];
 }
 
@@ -23,6 +23,4 @@ class Characters {
   }
 
   Characters(this.name,this.surname,this.age,this.gender,this.circleAvatarImage);
- 
-
 }
