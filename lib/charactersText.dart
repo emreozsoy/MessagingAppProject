@@ -1,15 +1,15 @@
 class CharactersTextRepository{
   final List<CharactersText> charactersText=[
   CharactersText([
-  "Selam",
-  "Selam, biraz meşgulüm şuanda sen nasılsın?",
+  "Selam@",
+  "Selam, biraz meşgulüm şuanda sen nasılsın?@",
   "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
 
-  "Ben adım da Deniz, bende memnun oldum",
+  "Ben adım da Deniz, bende memnun oldum@",
   "Vaktimi belki ayırabilirim senin için önemli bir konu mu?",
   "Bir kahveye hayır demem"
 
-  "Görüşmek üzere!!",
+  "Görüşmek üzere!!@",
   "Bye byee!",
   "images/Musuem.png",
 

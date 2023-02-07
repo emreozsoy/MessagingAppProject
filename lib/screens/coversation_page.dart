@@ -10,6 +10,8 @@ import 'package:untitled/messages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:untitled/screens/profileScreen.dart';
+
+import '../main.dart';
 const int maxFailedLoadAttempts = 3;
 
 class ConversationPage extends StatefulWidget {
@@ -385,7 +387,6 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     badAnswr();
                                   }
-                                  energy-=1;
 
                                 },
                                 child: _isButtonDisabled
@@ -427,7 +428,6 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     badAnswr();
                                   }
-                                  energy-=1;
 
                                 },
                                 child: _isButtonDisabled
@@ -470,7 +470,6 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     badAnswr();
                                   }
-                                  energy-=1;
 
                                 },
                                 child: _isButtonDisabled
@@ -506,22 +505,30 @@ class _ConversationPageState extends State<ConversationPage>
 
   void playerResponse(int whichText) { //Burdaki ifler fazla
     setState(() {
+      if(charactersTextRepository.charactersText[5].text.elementAt(textPos+whichText).endsWith("@")
+          ||charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).endsWith("@") ){
+        charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).substring(0, charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).length-1);
+        charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).substring(0, charactersTextRepository.charactersText[5].text.elementAt(textPos+whichText).length-1);
+        charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).replaceFirst(RegExp(r"@"),"");
+        charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).replaceFirst(RegExp(r"@"),"");
+
+        /* Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyApp()),
+      );*/
+      }
+
+
       type = 3;
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      if(whichText == 1){
+
         messagesRepository.messages[widget.index].msg.add(
-            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos));
-      }
-      else if(whichText==2){
-        messagesRepository.messages[widget.index].msg.add(
-            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+1));
-      }
-      else if(whichText==3){
-        messagesRepository.messages[widget.index].msg.add(
-            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+2));
-      }
+            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText));
+
       messagesRepository.messages[widget.index].user.add("Player");
     });
+
+
   }
 
   int random(min, max) {
@@ -551,44 +558,23 @@ class _ConversationPageState extends State<ConversationPage>
       setState(() {
         type = 1;
         messagesRepository.messages[widget.index].user.add("Bot");
-        print(textPos);
       });
       await Future.delayed(Duration(seconds: random(1,2)));
       setState(() {
         type = 2;
-        print("AnsweCounter= ${answerCounter}");
 
-
-        if(firstMsg==0 && whichText == 1){ // burdaki ifler fazla
+        if(firstMsg==0){ // burdaki ifler fazla
           firstMsg++;
           messagesRepository.messages[widget.index].msg.add(
               charactersTextRepository
                   .charactersText[widget.index].text
-                  .elementAt(textPos));
-        }
-        else if(firstMsg==0 && whichText == 2 ){
-
-            firstMsg++;
-            messagesRepository.messages[widget.index].msg.add(
-                charactersTextRepository
-                    .charactersText[widget.index].text
-                    .elementAt(textPos+1));
-
-        }
-        else if(firstMsg==0 && whichText == 3 ){
-
-          firstMsg++;
-          messagesRepository.messages[widget.index].msg.add(
-              charactersTextRepository
-                  .charactersText[widget.index].text
-                  .elementAt(textPos+2));
+                  .elementAt(textPos+whichText));
         }
         else{
           messagesRepository.messages[widget.index].msg.add(
               charactersTextRepository
                   .charactersText[widget.index].text
                   .elementAt(whichPoint[answerCounter]));
-
         }
         answerCounter--;
         _scrollController.animateTo(
@@ -616,14 +602,11 @@ class _ConversationPageState extends State<ConversationPage>
 
   void equalData() async {
     final prefs = await SharedPreferences.getInstance();
-    //await Future.delayed(Duration(seconds: random(4, 7)));
     setState(() {
         textPos = prefs.getInt('textPos${widget.index}') ?? 0;
         messagesRepository.messages[widget.index].msg= prefs.getStringList('messages${widget.index}')!;//Giving null
         messagesRepository.messages[widget.index].user= prefs.getStringList("mssgSend${widget.index}")!;
         charactersPointRepository.characterPoint[widget.index].sumPoint = prefs.getInt('prefSum${widget.index}')!;
-        energy = prefs.getInt('energy') ?? 10;
-        print(prefs.getInt('energy'));
     });
   }
   void saveData() async {
@@ -633,10 +616,8 @@ class _ConversationPageState extends State<ConversationPage>
     await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
     await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
     await prefs.setInt('prefSum${widget.index}',charactersPointRepository.characterPoint[widget.index].sumPoint );
-    await prefs.setInt('energy',energy);
 
   //  await prefs.clear(); delete all prefs
-
   }
   Path _buildHeartPath() {
     double x=2.4;
@@ -653,21 +634,12 @@ class _ConversationPageState extends State<ConversationPage>
   bool checkFirstOpen(){
         if(prefs.getInt('FirstTime${widget.index}') ==0){
           prefs.setInt("FirstTime${widget.index}')", 1);
-          setState(() {
-            prefs.setInt('energy', 10);
-          });
           return true;
         }
         else{return false;}
   }
 
 Color?  SelecBoxColor(int index) {
-  /* color : messagesRepository
-      .messages[widget.index]
-      .user[index] !=
-      "Bot"
-      ? Colors.lightGreen
-      : Colors.deepPurpleAccent.shade100,*/
 
   if(messagesRepository
       .messages[widget.index].msg[index].contains(".png")){
@@ -676,11 +648,8 @@ Color?  SelecBoxColor(int index) {
     else if (messagesRepository
         .messages[widget.index]
         .user[index]=="Bot"){
-
       return Colors.deepPurpleAccent.shade100;
-
     }
-
     else{
       return Colors.lightGreen;
     }
