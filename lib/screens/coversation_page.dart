@@ -6,6 +6,7 @@ import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:untitled/characterTextPoint.dart';
 import 'package:untitled/characters.dart';
 import 'package:untitled/charactersText.dart';
+import 'package:untitled/day_mechanic.dart';
 import 'package:untitled/messages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -54,6 +55,7 @@ class _ConversationPageState extends State<ConversationPage>
   ScrollController _scrollController = ScrollController();
   CharactersPointRepository charactersPointRepository =
   CharactersPointRepository();
+  DayMechanicRepository _dayMechanic = new DayMechanicRepository();
 
   final typing = ["Yazıyor.", "Yazıyor..", "Yazıyor...", "Yazıyor...."];
   int type = 0;
@@ -61,6 +63,7 @@ class _ConversationPageState extends State<ConversationPage>
   int textPos = 0;
   double per = 0;
   double perStatic = 0;
+  int day=0;
 
 
   @override
@@ -505,17 +508,15 @@ class _ConversationPageState extends State<ConversationPage>
 
   void playerResponse(int whichText) { //Burdaki ifler fazla
     setState(() {
-      if(charactersTextRepository.charactersText[5].text.elementAt(textPos+whichText).endsWith("@")
-          ||charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).endsWith("@") ){
-        charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).substring(0, charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).length-1);
-        charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).substring(0, charactersTextRepository.charactersText[5].text.elementAt(textPos+whichText).length-1);
-        charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText).replaceFirst(RegExp(r"@"),"");
-        charactersTextRepository.charactersText[widget.index].text.elementAt(textPos+whichText).replaceFirst(RegExp(r"@"),"");
 
-        /* Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyApp()),
-      );*/
+      if(_dayMechanic.dayMechanic[widget.index].dayPoint.contains(textPos) &&
+          widget.index == _dayMechanic.dayMechanic[widget.index].whichCharacter ){
+
+        day++;
+        print("GAY");
+        print("Hi GAY $day");
+        //Gün animasyonunu oynat
+        saveData();
       }
 
 
@@ -607,6 +608,7 @@ class _ConversationPageState extends State<ConversationPage>
         messagesRepository.messages[widget.index].msg= prefs.getStringList('messages${widget.index}')!;//Giving null
         messagesRepository.messages[widget.index].user= prefs.getStringList("mssgSend${widget.index}")!;
         charactersPointRepository.characterPoint[widget.index].sumPoint = prefs.getInt('prefSum${widget.index}')!;
+        day = prefs.getInt('day') ?? 0;
     });
   }
   void saveData() async {
@@ -616,6 +618,7 @@ class _ConversationPageState extends State<ConversationPage>
     await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
     await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
     await prefs.setInt('prefSum${widget.index}',charactersPointRepository.characterPoint[widget.index].sumPoint );
+    await prefs.setInt('day', day);
 
   //  await prefs.clear(); delete all prefs
   }
