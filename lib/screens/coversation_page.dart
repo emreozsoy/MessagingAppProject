@@ -1,4 +1,5 @@
 import 'dart:async';
+//import 'dart:html';
 import 'dart:io' show Platform;
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -13,48 +14,42 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:untitled/screens/profileScreen.dart';
 
 import '../main.dart';
+
 const int maxFailedLoadAttempts = 3;
 
 class ConversationPage extends StatefulWidget {
-
   final index;
   const ConversationPage(this.index, {Key? key}) : super(key: key);
 
   @override
   State<ConversationPage> createState() => _ConversationPageState();
-
 }
 
 class _ConversationPageState extends State<ConversationPage>
     with SingleTickerProviderStateMixin {
-
   static final AdRequest request = AdRequest(
     // keywords: <String>['foo', 'bar'],
     // contentUrl: 'http://foo.com/bar.html',
     nonPersonalizedAds: true,
   );
 
-
-
   RewardedAd? _rewardedAd;
   int _numRewardedLoadAttempts = 0;
-
 
   int? percentage = 0; //kullanıcıdan kullanıcıya değişicek kısım
   AnimationController? _animationController;
   late SharedPreferences prefs;
   int firstEntry = 0;
   int? relationPoint;
-  int energy=10;
-
+  int energy = 10;
 
   CharactersRepository charactersRepository = CharactersRepository();
   CharactersTextRepository charactersTextRepository =
-  CharactersTextRepository();
+      CharactersTextRepository();
   MessagesRepository messagesRepository = MessagesRepository();
   ScrollController _scrollController = ScrollController();
   CharactersPointRepository charactersPointRepository =
-  CharactersPointRepository();
+      CharactersPointRepository();
   DayMechanicRepository _dayMechanic = new DayMechanicRepository();
 
   final typing = ["Yazıyor.", "Yazıyor..", "Yazıyor...", "Yazıyor...."];
@@ -63,8 +58,7 @@ class _ConversationPageState extends State<ConversationPage>
   int textPos = 0;
   double per = 0;
   double perStatic = 0;
-  int day=0;
-
+  int day = 0;
 
   @override
   initState() {
@@ -81,23 +75,20 @@ class _ConversationPageState extends State<ConversationPage>
     scrollMssg();
   }
 
-  Future<void> dataHandle() async { // her sayfaya bir kere girildiği için dğeiştirilmeli first time
-    prefs =  await SharedPreferences.getInstance();
-    if (checkFirstOpen()){
+  Future<void> dataHandle() async {
+    // her sayfaya bir kere girildiği için dğeiştirilmeli first time
+    prefs = await SharedPreferences.getInstance();
+    if (checkFirstOpen()) {
       saveData();
-    }
-    else
-    {
+    } else {
       equalData();
     }
   }
+
   Future<void> scrollMssg() async {
-
-    await Future.delayed(Duration(milliseconds:100));
-    _scrollController.jumpTo(_scrollController
-        .position.maxScrollExtent);
+    await Future.delayed(Duration(milliseconds: 100));
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   }
-
 
   @override
   void dispose() {
@@ -106,7 +97,6 @@ class _ConversationPageState extends State<ConversationPage>
     saveData();
     super.dispose();
     _rewardedAd?.dispose();
-
   }
 
   void goodAnswr() {
@@ -173,13 +163,13 @@ class _ConversationPageState extends State<ConversationPage>
     _rewardedAd!.setImmersiveMode(true);
     _rewardedAd!.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
-          print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
-        });
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+    });
     _rewardedAd = null;
   }
+
   @override
   Widget build(BuildContext context) {
-
     relationPoint =
         charactersPointRepository.characterPoint[widget.index].sumPoint;
 
@@ -195,41 +185,43 @@ class _ConversationPageState extends State<ConversationPage>
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: ()async{
+            onPressed: () async {
               final prefs = await SharedPreferences.getInstance();
-              setState((){
-                Navigator.pop(context,prefs.getInt('energy'));
-              },);
+              setState(
+                () {
+                  Navigator.pop(context, prefs.getInt('energy'));
+                },
+              );
             },
           ),
-
           backgroundColor: Colors.lightGreen,
           titleSpacing: -5,
           title: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-
               InkWell(
-                onTap: (){
-                    Navigator.of(context).push(
-                    MaterialPageRoute(
-                    builder: (context) {
-                    return ProfileScreen(widget.index);}),);
-
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return ProfileScreen(widget.index);
+                    }),
+                  );
                 },
                 child: CircleAvatar(
                     backgroundImage: AssetImage(charactersRepository
                         .characters[widget.index]
                         .circleAvatarImage) //ImageProvider("images/bot1"),
-                ),
+                    ),
               ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   setState(() {
                     Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) {
-                            return ConversationPage(widget.index);}),);                  });
+                      MaterialPageRoute(builder: (context) {
+                        return ConversationPage(widget.index);
+                      }),
+                    );
+                  });
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -237,7 +229,7 @@ class _ConversationPageState extends State<ConversationPage>
                     _isButtonDisabled
                         ? typing[type]
                         : charactersRepository.characters[widget.index]
-                        .nameWithSurname(),
+                            .nameWithSurname(),
                     style: TextStyle(fontSize: 20),
                   ), //font ayarla
                 ),
@@ -258,23 +250,31 @@ class _ConversationPageState extends State<ConversationPage>
                         fontWeight: FontWeight.bold,
                       ),
                     )),
-
               ),
             ],
           ),
           actions: [
             Align(
-              alignment: Alignment.center,
-                child: Text("$energy", style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),)),
-            IconButton(onPressed: () {
-              setState(() {
-                _showRewardedAd();
-              });
-            }, icon: const Icon(Icons.bolt_sharp,size: 40,color: Colors.yellowAccent,))
+                alignment: Alignment.center,
+                child: Text(
+                  "$energy",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    _showRewardedAd();
+                  });
+                },
+                icon: const Icon(
+                  Icons.bolt_sharp,
+                  size: 40,
+                  color: Colors.yellowAccent,
+                ))
           ],
         ),
         body: Container(
@@ -290,9 +290,10 @@ class _ConversationPageState extends State<ConversationPage>
                 child: ListView.builder(
                   controller: _scrollController,
                   itemCount:
-                  messagesRepository.messages[widget.index].msg.length,
+                      messagesRepository.messages[widget.index].msg.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
+
                     /* _scrollController.animateTo(
                       _scrollController.position.maxScrollExtent,
                       curve: Curves.ease,
@@ -301,42 +302,37 @@ class _ConversationPageState extends State<ConversationPage>
 
                     return ListTile(
                       title: Align(
-                          alignment: messagesRepository
-                              .messages[widget.index].user[index] !=
-                              "Bot"  //messagesRepository.messages[widget.index].msg.last.endsWith(" ")
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
-
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                color:SelecBoxColor(index),
-                              ),
-
-                              child: Stack(
-                                children:[
-
-                                  messagesRepository
-                                      .messages[widget.index].msg[index].contains(".png")
-                                ?ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image.asset(messagesRepository
-                                      .messages[widget.index].msg[index],
-                                        width: 150,
-                                        height: 150,
-                                        
-                                        fit:BoxFit.cover),
-                                )
-                                : Text(messagesRepository
-                                    .messages[widget.index].msg[index],
-                                    style: TextStyle(color: Colors.white)
-                                  ),
-                                ],),
-
+                        alignment: messagesRepository
+                                    .messages[widget.index].user[index] !=
+                                "Bot" //messagesRepository.messages[widget.index].msg.last.endsWith(" ")
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child:ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Container(
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: SelecBoxColor(index),
                             ),
-                          )
+                            child: Stack(
+                              children: [
+                                messagesRepository.messages[widget.index].msg[index]
+                                    .contains(".png")
+                                    ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset(
+                                      messagesRepository
+                                          .messages[widget.index].msg[index],
+                                      width: 150,
+                                      height: 150,
+                                      fit: BoxFit.cover),
+                                )
+                                    : Text(messagesRepository.messages[widget.index].msg[index],
+                                    style: TextStyle(color: Colors.white)),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -370,6 +366,46 @@ class _ConversationPageState extends State<ConversationPage>
                                   } else {
                                     _isButtonDisabled = true;
                                     setState(() {
+                                      playerResponse(0);
+                                      botResponse(0);
+                                    });
+                                    _scrollController.jumpTo(_scrollController
+                                        .position.maxScrollExtent);
+                                  }
+                                  charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .sumPoint +=
+                                      charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos];
+                                  if (charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos] >=
+                                      0) {
+                                    goodAnswr();
+                                  } else {
+                                    badAnswr();
+                                  }
+                                },
+                                child: _isButtonDisabled
+                                    ? Text("......")
+                                    : Text(
+                                        charactersTextRepository
+                                            .charactersText[5].text
+                                            .elementAt(textPos),
+                                        textAlign: TextAlign.center,
+                                      ),
+                              ),
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_isButtonDisabled) {
+                                    return null;
+                                  } else {
+                                    _isButtonDisabled = true;
+                                    setState(() {
                                       playerResponse(1);
                                       botResponse(1);
                                     });
@@ -377,29 +413,28 @@ class _ConversationPageState extends State<ConversationPage>
                                         .position.maxScrollExtent);
                                   }
                                   charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .sumPoint +=
-                                  charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos];
+                                          .characterPoint[widget.index]
+                                          .sumPoint +=
+                                      charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 1];
                                   if (charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos] >=
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 1] >=
                                       0) {
                                     goodAnswr();
                                   } else {
                                     badAnswr();
                                   }
-
                                 },
                                 child: _isButtonDisabled
                                     ? Text("......")
                                     : Text(
-                                  charactersTextRepository
-                                      .charactersText[5].text
-                                      .elementAt(textPos),
-                                  textAlign: TextAlign.center,
-                                ),
+                                        charactersTextRepository
+                                            .charactersText[5].text
+                                            .elementAt(textPos + 1),
+                                        textAlign: TextAlign.center,
+                                      ),
                               ),
                             ),
                             ClipRRect(
@@ -418,71 +453,28 @@ class _ConversationPageState extends State<ConversationPage>
                                         .position.maxScrollExtent);
                                   }
                                   charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .sumPoint +=
-                                  charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos + 1];
+                                          .characterPoint[widget.index]
+                                          .sumPoint +=
+                                      charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 2];
                                   if (charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos + 1] >=
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 2] >=
                                       0) {
                                     goodAnswr();
                                   } else {
                                     badAnswr();
                                   }
-
                                 },
                                 child: _isButtonDisabled
                                     ? Text("......")
                                     : Text(
-                                  charactersTextRepository
-                                      .charactersText[5].text
-                                      .elementAt(textPos + 1),
-                                  textAlign: TextAlign.center,
-                                ),
-
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(25.0),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (_isButtonDisabled) {
-                                    return null;
-                                  } else {
-                                    _isButtonDisabled = true;
-                                    setState(() {
-                                      playerResponse(3);
-                                      botResponse(3);
-                                    });
-                                    _scrollController.jumpTo(_scrollController
-                                        .position.maxScrollExtent);
-                                  }
-                                  charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .sumPoint +=
-                                  charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos + 2];
-                                  if (charactersPointRepository
-                                      .characterPoint[widget.index]
-                                      .point[textPos + 2] >=
-                                      0) {
-                                    goodAnswr();
-                                  } else {
-                                    badAnswr();
-                                  }
-
-                                },
-                                child: _isButtonDisabled
-                                    ? Text("......")
-                                    : Text(
-                                  charactersTextRepository
-                                      .charactersText[5].text
-                                      .elementAt(textPos + 2),
-                                  textAlign: TextAlign.center,
-                                ),
+                                        charactersTextRepository
+                                            .charactersText[5].text
+                                            .elementAt(textPos + 2),
+                                        textAlign: TextAlign.center,
+                                      ),
                               ),
                             ),
                           ],
@@ -495,7 +487,6 @@ class _ConversationPageState extends State<ConversationPage>
             ],
           ),
         ));
-
   }
 
   String Typing() {
@@ -506,30 +497,27 @@ class _ConversationPageState extends State<ConversationPage>
     return type[3];
   }
 
-  void playerResponse(int whichText) { //Burdaki ifler fazla
+  void playerResponse(int whichText) {
+    //Burdaki ifler fazla
     setState(() {
-
-      if(_dayMechanic.dayMechanic[widget.index].dayPoint.contains(textPos) &&
-          widget.index == _dayMechanic.dayMechanic[widget.index].whichCharacter ){
-
+      if (_dayMechanic.dayMechanic[widget.index].dayPoint.contains(textPos) &&
+          widget.index ==
+              _dayMechanic.dayMechanic[widget.index].whichCharacter) {
         day++;
-        print("GAY");
-        print("Hi GAY $day");
+
         //Gün animasyonunu oynat
         saveData();
       }
 
-
       type = 3;
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
 
-        messagesRepository.messages[widget.index].msg.add(
-            charactersTextRepository.charactersText[widget.index+5].text.elementAt(textPos+whichText));
+      messagesRepository.messages[widget.index].msg.add(charactersTextRepository
+          .charactersText[widget.index + 5].text
+          .elementAt(textPos + whichText));
 
       messagesRepository.messages[widget.index].user.add("Player");
     });
-
-
   }
 
   int random(min, max) {
@@ -537,54 +525,46 @@ class _ConversationPageState extends State<ConversationPage>
   }
 
   Future<void> botResponse(int whichText) async {
-    int answerCounter=0,firstMsg=0;
-    final whichPoint = <int>[];
+    type = 1;
 
-    for (int i =0; i< charactersTextRepository.charactersText[widget.index].numberMssg.length;i++) {
-      if (charactersTextRepository.charactersText[widget.index].numberMssg[i] == textPos) {
-        answerCounter++;
-        whichPoint.add(i);
-        print(" Item === ${charactersTextRepository.charactersText[widget.index].numberMssg[i]}");
+    List<String> divMsg =
+    charactersTextRepository.charactersText[widget.index].text
+        .elementAt(textPos + whichText).split("-");
+
+    if (1 < divMsg.length) {
+      int i=0;
+      while(i<divMsg.length){
+        messagesRepository
+            .messages[widget.index].user.add("Bot");
+        await Future.delayed(Duration(seconds: random(1, 2)));
+
+        messagesRepository.messages[widget.index].msg.add(divMsg[i]);
+        i++;
       }
-
-      /*if(answerCounter>1){
-        whichPoint.add()[0]=item;
-        whichPoint[answerCounter]=item;
-        print("Bende ${item}");
-      }*/
     }
-    print(" GrowableList= ${whichPoint}");
-   // print("AnsweCounter= ${answerCounter}");
-    while(answerCounter>0) {
-      setState(() {
-        type = 1;
-        messagesRepository.messages[widget.index].user.add("Bot");
-      });
-      await Future.delayed(Duration(seconds: random(1,2)));
+    else{
+
+      await Future.delayed(Duration(seconds: random(1, 2)));
       setState(() {
         type = 2;
+        messagesRepository
+            .messages[widget.index].user.add("Bot");
 
-        if(firstMsg==0){ // burdaki ifler fazla
-          firstMsg++;
-          messagesRepository.messages[widget.index].msg.add(
-              charactersTextRepository
-                  .charactersText[widget.index].text
-                  .elementAt(textPos+whichText));
-        }
-        else{
-          messagesRepository.messages[widget.index].msg.add(
-              charactersTextRepository
-                  .charactersText[widget.index].text
-                  .elementAt(whichPoint[answerCounter]));
-        }
-        answerCounter--;
+        messagesRepository.messages[widget.index].msg.add(
+            divMsg.first);
+
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           curve: Curves.ease,
           duration: const Duration(milliseconds: 300),
         );
       });
-      await Future.delayed(Duration(seconds: random(1,2)));
+
+    }
+
+
+
+      await Future.delayed(Duration(seconds: random(1, 2)));
       setState(() {
         type = 3;
         _scrollController.animateTo(
@@ -593,9 +573,8 @@ class _ConversationPageState extends State<ConversationPage>
           duration: const Duration(milliseconds: 300),
         );
       });
-    }
+
     setState(() {
-      whichPoint.removeRange(0, whichPoint.length);
       _isButtonDisabled = false;
       textPos = textPos + 3;
     });
@@ -604,62 +583,62 @@ class _ConversationPageState extends State<ConversationPage>
   void equalData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-        textPos = prefs.getInt('textPos${widget.index}') ?? 0;
-        messagesRepository.messages[widget.index].msg= prefs.getStringList('messages${widget.index}')!;//Giving null
-        messagesRepository.messages[widget.index].user= prefs.getStringList("mssgSend${widget.index}")!;
-        charactersPointRepository.characterPoint[widget.index].sumPoint = prefs.getInt('prefSum${widget.index}')!;
-        day = prefs.getInt('day') ?? 0;
+      textPos = prefs.getInt('textPos${widget.index}') ?? 0;
+      messagesRepository.messages[widget.index].msg =
+          prefs.getStringList('messages${widget.index}')!; //Giving null
+      messagesRepository.messages[widget.index].user =
+          prefs.getStringList("mssgSend${widget.index}")!;
+      charactersPointRepository.characterPoint[widget.index].sumPoint =
+          prefs.getInt('prefSum${widget.index}')!;
+      day = prefs.getInt('day') ?? 0;
     });
   }
+
   void saveData() async {
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setInt('textPos${widget.index}', textPos);
-    await prefs.setStringList('messages${widget.index}',messagesRepository.messages[widget.index].msg);
-    await prefs.setStringList("mssgSend${widget.index}", messagesRepository.messages[widget.index].user);
-    await prefs.setInt('prefSum${widget.index}',charactersPointRepository.characterPoint[widget.index].sumPoint );
+    await prefs.setStringList('messages${widget.index}',
+        messagesRepository.messages[widget.index].msg);
+    await prefs.setStringList("mssgSend${widget.index}",
+        messagesRepository.messages[widget.index].user);
+    await prefs.setInt('prefSum${widget.index}',
+        charactersPointRepository.characterPoint[widget.index].sumPoint);
     await prefs.setInt('day', day);
 
-  //  await prefs.clear(); delete all prefs
+    await prefs.clear(); //delete all prefs
   }
+
   Path _buildHeartPath() {
-    double x=2.4;
+    double x = 2.4;
     return Path()
       ..moveTo(55 / x, 15 / x)
-      ..cubicTo(55 / x, 12 / x, 50 / x, 0, 30 / x, 0)..cubicTo(
-          0, 0, 0, 37.5 / x, 0, 37.5 / x)..cubicTo(
-          0, 55 / x, 20 / x, 77 / x, 55 / x, 95 / x)..cubicTo(
-          90 / x, 77 / x, 110 / x, 55 / x, 110 / x, 37.5 / x)..cubicTo(
-          110 / x, 37.5 / x, 110 / x, 0, 80 / x, 0)..cubicTo(
-          65 / x, 0, 55 / x, 12 / x, 55 / x, 15 / x)
+      ..cubicTo(55 / x, 12 / x, 50 / x, 0, 30 / x, 0)
+      ..cubicTo(0, 0, 0, 37.5 / x, 0, 37.5 / x)
+      ..cubicTo(0, 55 / x, 20 / x, 77 / x, 55 / x, 95 / x)
+      ..cubicTo(90 / x, 77 / x, 110 / x, 55 / x, 110 / x, 37.5 / x)
+      ..cubicTo(110 / x, 37.5 / x, 110 / x, 0, 80 / x, 0)
+      ..cubicTo(65 / x, 0, 55 / x, 12 / x, 55 / x, 15 / x)
       ..close();
   }
-  bool checkFirstOpen(){
-        if(prefs.getInt('FirstTime${widget.index}') ==0){
-          prefs.setInt("FirstTime${widget.index}')", 1);
-          return true;
-        }
-        else{return false;}
-  }
 
-Color?  SelecBoxColor(int index) {
-
-  if(messagesRepository
-      .messages[widget.index].msg[index].contains(".png")){
-    return Colors.deepPurpleAccent.shade100;
-  }
-    else if (messagesRepository
-        .messages[widget.index]
-        .user[index]=="Bot"){
-      return Colors.deepPurpleAccent.shade100;
+  bool checkFirstOpen() {
+    if (prefs.getInt('FirstTime${widget.index}') == 0) {
+      prefs.setInt("FirstTime${widget.index}')", 1);
+      return true;
+    } else {
+      return false;
     }
-    else{
+  }
+
+  Color? SelecBoxColor(int index) {
+    if (messagesRepository.messages[widget.index].msg[index].contains(".png")) {
+      return Colors.deepPurpleAccent.shade100;
+    } else if (messagesRepository.messages[widget.index].user[index] == "Bot") {
+      return Colors.deepPurpleAccent.shade100;
+    } else {
       return Colors.lightGreen;
     }
+  }
 
 }
-
-}
-
-
-

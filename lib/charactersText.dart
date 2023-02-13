@@ -1,20 +1,20 @@
 class CharactersTextRepository{
   final List<CharactersText> charactersText=[
   CharactersText([
-  "Selam@",
-  "Selam, biraz meşgulüm şuanda sen nasılsın?@",
+  "Selam",
+  "Selam, - biraz meşgulüm şuanda sen nasılsın?",
   "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
 
-  "Ben adım da Deniz, bende memnun oldum@",
-  "Vaktimi belki ayırabilirim senin için önemli bir konu mu?",
-  "Bir kahveye hayır demem"
+  "Ben adım - da Deniz, bende memnun oldum",
+  "Vaktimi belki- ayırabilirim senin için önemli bir konu mu?",
+  "Bir - kahveye hayır demem",
 
-  "Görüşmek üzere!!@",
+  "Görüşmek üzere!!",
   "Bye byee!",
   "images/Musuem.png",
 
   "Orda görüşmek üzere!"
-  ],[0,1,2,3,4,5,6,7,8,8]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
+  ]),//BUNU PREFS ile kaydedip sonra for yerinde dönerken silmek lazım remove ile
 
     /* BOT2         */
     CharactersText([
@@ -31,19 +31,19 @@ class CharactersTextRepository{
       "images/Musuem.png",
 
       "Orda görüşmek üzere!"
-    ],[0,1,2,3,4,5,6,7,8,8]),
+    ]),
 
     /*BOT3*/
     CharactersText(["Ben de yenilikleri severim. ","Selam, ben Karakter3",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
+      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."]),
 
     /*      BOT4    */
     CharactersText(["Ben de yenilikleri severim. Adım  ","Selam, ben Karakter4.",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
+      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."]),
 
     /*    BOT5     */
     CharactersText(["Ben de yenilikleri severim. Adım Karakter5 ","Selam, ben Karakter5.",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."],[0]),
+      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."]),
 
     /*  PLAYER -TextBot1        */
     CharactersText([
@@ -65,7 +65,7 @@ class CharactersTextRepository{
 
       "ListeBitti1","ListeBitti2", "ListeBitti3",
 
-      " sa","dsa","dsa","sda"],[0]),
+      " sa","dsa","dsa","sda"]),
 
     /*  PLAYER -TextBot2        */
     CharactersText([
@@ -87,13 +87,13 @@ class CharactersTextRepository{
 
       "ListeBitti1","ListeBitti2", "ListeBitti3",
 
-      " sa","dsa","dsa","sda"],[0])
+      " sa","dsa","dsa","sda"])
   ];
 
 }
 class CharactersText{
   //String characterName;
   List<String> text;
-  List<int> numberMssg;
-  CharactersText(this.text,this.numberMssg);
+
+  CharactersText(this.text);
 }
