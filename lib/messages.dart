@@ -3,7 +3,7 @@ class MessagesRepository{
     Messages(["Selam, okulumuza hoş geldin.","Ben Benedict. Yenileri severiz 😊",]
         ,["Bot","Bot"]),
     /* BOT2 CHAT */
-    Messages([""],[""]),
+    Messages(["Emre"],["Bot"]),
     /* BOT3 CHAT */
 
     Messages(["Hayır","Ben","Cidden mi???"],["Bot"]),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:untitled/characterTextPoint.dart';
 import 'package:untitled/characters.dart';
+import 'package:untitled/charactersSecondText.dart';
 import 'package:untitled/charactersText.dart';
 import 'package:untitled/day_mechanic.dart';
 import 'package:untitled/messages.dart';
@@ -186,11 +187,12 @@ class _ConversationPageState extends State<ConversationPage>
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () async {
-              final prefs = await SharedPreferences.getInstance();
-              setState(
-                () {
-                  Navigator.pop(context, prefs.getInt('energy'));
-                },
+              saveData();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(title: 'e', lastText: '${prefs.getStringList('messages${widget.index}')?.last}'),
+                ),
               );
             },
           ),
@@ -527,42 +529,7 @@ class _ConversationPageState extends State<ConversationPage>
   Future<void> botResponse(int whichText) async {
     type = 1;
 
-    List<String> divMsg =
-    charactersTextRepository.charactersText[widget.index].text
-        .elementAt(textPos + whichText).split("-");
-
-    if (1 < divMsg.length) {
-      int i=0;
-      while(i<divMsg.length){
-        messagesRepository
-            .messages[widget.index].user.add("Bot");
-        await Future.delayed(Duration(seconds: random(1, 2)));
-
-        messagesRepository.messages[widget.index].msg.add(divMsg[i]);
-        i++;
-      }
-    }
-    else{
-
-      await Future.delayed(Duration(seconds: random(1, 2)));
-      setState(() {
-        type = 2;
-        messagesRepository
-            .messages[widget.index].user.add("Bot");
-
-        messagesRepository.messages[widget.index].msg.add(
-            divMsg.first);
-
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          curve: Curves.ease,
-          duration: const Duration(milliseconds: 300),
-        );
-      });
-
-    }
-
-
+  await sendText(whichText);
 
       await Future.delayed(Duration(seconds: random(1, 2)));
       setState(() {
@@ -578,6 +545,110 @@ class _ConversationPageState extends State<ConversationPage>
       _isButtonDisabled = false;
       textPos = textPos + 3;
     });
+  }
+
+  Future<void> sendText(int whichText) async {
+
+    if(charactersPointRepository.characterPoint[widget.index].sumPoint > 10) {
+      List<String> divMsg =
+      charactersTextRepository.charactersText[widget.index].text
+          .elementAt(textPos + whichText).split("-");
+
+      if (1 < divMsg.length) {
+        int i = 0;
+
+        while (i < divMsg.length) {
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
+          await Future.delayed(Duration(seconds: random(1, 2)));
+
+          type = random(0, 2);
+
+          setState(() {
+            messagesRepository.messages[widget.index].msg.add(divMsg[i]);
+            i++;
+          });
+
+
+          await Future.delayed(Duration(seconds: random(0, 1)));
+
+
+          _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              curve: Curves.ease,
+              duration: const Duration(milliseconds: 300));
+        }
+      }
+
+      else{
+        await Future.delayed(Duration(seconds: random(1, 2)));
+        setState(() {
+          type = 2;
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
+
+          messagesRepository.messages[widget.index].msg.add(
+              divMsg.first);
+
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 300),
+          );
+        });
+      }
+    }
+    else{
+      CharactersSecondText charactersSecondText = CharactersSecondText();
+
+      List<String> divMsg =
+      charactersSecondText.charactersText[widget.index].text
+          .elementAt(textPos + whichText).split("-");
+
+      if (1 < divMsg.length) {
+        int i = 0;
+
+        while (i < divMsg.length) {
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
+          await Future.delayed(Duration(seconds: random(1, 2)));
+
+          type = random(0, 2);
+
+          setState(() {
+            messagesRepository.messages[widget.index].msg.add(divMsg[i]);
+            i++;
+          });
+
+
+          await Future.delayed(Duration(seconds: random(0, 1)));
+
+
+          _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              curve: Curves.ease,
+              duration: const Duration(milliseconds: 300));
+        }
+      }
+      else{
+        await Future.delayed(Duration(seconds: random(1, 2)));
+        setState(() {
+          type = 2;
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
+
+          messagesRepository.messages[widget.index].msg.add(
+              divMsg.first);
+
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 300),
+          );
+        });
+      }
+
+    }
   }
 
   void equalData() async {
@@ -606,7 +677,7 @@ class _ConversationPageState extends State<ConversationPage>
         charactersPointRepository.characterPoint[widget.index].sumPoint);
     await prefs.setInt('day', day);
 
-    await prefs.clear(); //delete all prefs
+  await prefs.clear(); //delete all prefs
   }
 
   Path _buildHeartPath() {

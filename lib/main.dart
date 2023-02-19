@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,11 +14,11 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   //Icons.push_pin                       MaterialPageRoute(builder: (context) => ConversationPage()),
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp( {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,15 +26,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Chat Messenger'),
+      home: const MyHomePage(title: 'Chat Messenger', lastText: 'e',),
     );
   }
 }
 
 // ignore: must_be_immutable
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  const MyHomePage({Key? key, required this.title, required this.lastText}) : super(key: key);
   final String title;
+  final String lastText;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -43,7 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   CharactersRepository charactersRepository = CharactersRepository();
   MessagesRepository messagesRepository = MessagesRepository();
   SharedPreferences? prefs;
-  static final AdRequest request = AdRequest(
+
+
+  static final AdRequest request = const AdRequest(
     // keywords: <String>['foo', 'bar'],
     // contentUrl: 'http://foo.com/bar.html',
     nonPersonalizedAds: true,
@@ -55,34 +60,41 @@ class _MyHomePageState extends State<MyHomePage> {
   int energy = 10;
   int? getEnergy;
   @override
-  initState() {
-    super.initState();
-    _createRewardedAd();
-    dayCounter();
-    newLenght = newsLenght();
-    equalData();
+  initState(){
+      super.initState();
+      _createRewardedAd();
+      dayCounter();
+      newLenght = newsLenght();
+      equalData();
   }
 
   @override
-  void dispose() {
+  dispose() async {
     super.dispose();
     _rewardedAd?.dispose();
-    saveData();
+    //saveData();
+   // await prefs!.clear();
+
   }
 
-  void saveData() async {
+  void saveData(int index) async {
     final prefs = await SharedPreferences.getInstance();
+
     setState(() async {
-      await prefs.setInt('energy', energy);
+      await prefs.setStringList('messages${index}',
+          messagesRepository.messages[index].msg);
+
     });
   }
 
   void equalData() async {
     final prefs = await SharedPreferences.getInstance();
-
-      energy = getEnergy ?? prefs.getInt('energy')!; // NULL VERİYO
-      print("${prefs.getInt('energy')}, okey ${getEnergy}");
-      print("okey");
+    List<String> Okey=["es"];
+    messagesRepository.messages[0].msg = prefs.getStringList('messages0') ?? Okey;
+    energy = getEnergy ?? prefs.getInt('energy')!; // NULL VERİYO
+    print("${prefs.getInt('energy')}, okey ${getEnergy}");
+    print("okey");
+    //await prefs!.clear();
 
   }
 
@@ -95,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       newDay = 2;
     });
+
   }
 
   Future<String> subTitleTxt(int index) async {
@@ -170,34 +183,29 @@ class _MyHomePageState extends State<MyHomePage> {
           newDay < 10) {
         count++;
       }
-      print("merhaba ${newsRepository.news[0].newsSubtitle[i].substring(4, 5)} ,$count");
+      print(
+          "merhaba ${newsRepository.news[0].newsSubtitle[i].substring(4, 5)} ,$count");
     }
     return count;
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return DefaultTabController(
       initialIndex: 0,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           actions: [
-
-
             SafeArea(
               child: Stack(
                 fit: StackFit.passthrough,
                 children: [
-                  
                   ElevatedButton.icon(
                     onPressed: () {
                       _showRewardedAd();
                     },
-                    label:Align(
+                    label: Align(
                       alignment: Alignment.center,
                       child: Text(
                         "Yenileme",
@@ -213,7 +221,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: 40,
                       color: Colors.yellowAccent,
                     ),
-                    
                   ),
                   Positioned(
                       height: 3.0,
@@ -252,27 +259,22 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   onTap: () async {
-                    final data = await Navigator.of(context).push(
+                    await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
                           return ConversationPage(index);
                         },
                       ),
                     );
-                    setState(
-                      () {
-                        getEnergy = data;
-                        print(data);
-                      },
-                    );
                   },
                   leading: InkWell(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) {
-                                return ProfileScreen(index);}),);
+                          MaterialPageRoute(builder: (context) {
+                            return ProfileScreen(index);
+                          }),
+                        );
                       });
                     },
                     child: CircleAvatar(
@@ -294,6 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           (BuildContext context, AsyncSnapshot<String> text) {
                         return Text(text.data ?? "- - -");
                       }),
+
                 );
               },
             ),
@@ -350,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Expanded(
-                    child: Stack(
+                  child: Stack(
                     children: [
                       Container(
                         decoration: BoxDecoration(

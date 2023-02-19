@@ -1,3 +1,4 @@
+// ignore: file_names
 class CharactersPointRepository{
   final List<CharactersPoint> characterPoint = [
     // 1.Karakterin Cevaba Bağlı İlişki Puanı
