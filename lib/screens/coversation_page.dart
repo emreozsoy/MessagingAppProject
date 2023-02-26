@@ -314,7 +314,7 @@ class _ConversationPageState extends State<ConversationPage>
                           child: Container(
                             padding: EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
-                              color: SelecBoxColor(index),
+                              color: selectBoxColor(index),
                             ),
                             child: Stack(
                               children: [
@@ -359,7 +359,7 @@ class _ConversationPageState extends State<ConversationPage>
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ClipRRect(
+                            if(isMessageTrue()) ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -399,7 +399,7 @@ class _ConversationPageState extends State<ConversationPage>
                                       ),
                               ),
                             ),
-                            ClipRRect(
+                            if(isMessageTrue())ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -433,13 +433,17 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
+<<<<<<< Updated upstream
                                             .charactersText[widget.index + 5].text
+=======
+                                            .charactersText[widget.index+5].text
+>>>>>>> Stashed changes
                                             .elementAt(textPos + 1),
                                         textAlign: TextAlign.center,
                                       ),
                               ),
                             ),
-                            ClipRRect(
+                            if(isMessageTrue())ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -702,7 +706,7 @@ class _ConversationPageState extends State<ConversationPage>
     }
   }
 
-  Color? SelecBoxColor(int index) {
+  Color? selectBoxColor(int index) {
     if (messagesRepository.messages[widget.index].msg[index].contains(".png")) {
       return Colors.deepPurpleAccent.shade100;
     } else if (messagesRepository.messages[widget.index].user[index] == "Bot") {
@@ -712,4 +716,15 @@ class _ConversationPageState extends State<ConversationPage>
     }
   }
 
+    bool isMessageTrue(){
+    if(charactersTextRepository.charactersText[widget.index +5].text
+        .elementAt(textPos + 0) != "" && charactersTextRepository.charactersText[widget.index +5].text
+        .elementAt(textPos + 0)!="" ){
+
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 }
