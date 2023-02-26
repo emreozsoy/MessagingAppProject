@@ -393,7 +393,7 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-                                            .charactersText[5].text
+                                            .charactersText[widget.index + 5].text
                                             .elementAt(textPos),
                                         textAlign: TextAlign.center,
                                       ),
@@ -433,7 +433,7 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-                                            .charactersText[5].text
+                                            .charactersText[widget.index + 5].text
                                             .elementAt(textPos + 1),
                                         textAlign: TextAlign.center,
                                       ),
@@ -473,7 +473,7 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-                                            .charactersText[5].text
+                                            .charactersText[widget.index + 5].text
                                             .elementAt(textPos + 2),
                                         textAlign: TextAlign.center,
                                       ),

@@ -11,7 +11,7 @@ class CharactersPointRepository{
     // 2.Karakterin Cevaba Bağlı İlişki Puanı
     CharactersPoint([0,1,2,3], 0),
     // 3.Karakterin Cevaba Bağlı İlişki Puanı
-    CharactersPoint([0,1,2,3], 0),
+    CharactersPoint([0,1,2,3], 10),
     // 4.Karakterin Cevaba Bağlı İlişki Puanı
     CharactersPoint([0,1,2,3], 0),
     // 5.Karakterin Cevaba Bağlı İlişki Puanı

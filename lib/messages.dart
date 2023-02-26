@@ -6,13 +6,13 @@ class MessagesRepository{
     Messages(["Emre"],["Bot"]),
     /* BOT3 CHAT */
 
-    Messages(["Hayır","Ben","Cidden mi???"],["Bot"]),
+    Messages(["Hey, Hey!! Naber, Dostum nasılsın?"],["Bot"]),
     /* BOT4 CHAT */
 
-    Messages(["Kes kopke","Okula hoşgeldin yeni kız ","Tamamdır."],["Bot"]),
+    Messages(["Kes kopke"],["Bot"]),
     /* BOT5 CHAT */
 
-    Messages(["Merhaba","Ben","Okulda görüşürüz"],["Bot","Bot"]),
+    Messages(["Merhaba","Ben"],["Bot","Bot"]),
 
 
   ];

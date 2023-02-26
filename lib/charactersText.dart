@@ -24,7 +24,7 @@ class CharactersTextRepository{
 
   "Ben adım - da -Deniz ,-bende, -memnun, -oldum",
   "Vaktimi belki- ayırabilirim senin için önemli bir konu mu?",
-  "Bir - kahveye hayır demem",
+  "Bir kahveye - hayır demem",
 
   "Görüşmek üzere!!",
   "Bye byee!",
@@ -50,29 +50,39 @@ class CharactersTextRepository{
       "Orda görüşmek üzere!"
     ]),
 
-    /*BOT3*/
+    /*BOT3 Asano Akio */
     CharactersText([
-      "Ben de yenilikleri severim. ",
-      "Selam, ben Karakter3",
-      "Sen karşılama komitesi misin? ne bu özgüven?",
+      "Hayır tabi ki, ismini sınıf listesinden gördüm hahahhah!",
+      "Ben Asano, dostum 😀",
+      "Süpeer, Okulda çok güzel kızlar olduğunu duydum dostumm!",
 
       "Çok naziksiniz",
       "Böyle düşünmene üzüldüm",
       "Malesef sizle şuan konuşamam.."]),
 
     /*      BOT4    */
-    CharactersText(["Ben de yenilikleri severim. Adım  ","Selam, ben Karakter4.",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."]),
+    CharactersText(["Ben de yenilikleri severim. Adım  ",
+      "Selam, ben Karakter4.",
+      "Sen karşılama komitesi misin? ne bu özgüven?",
+
+      "Çok naziksiniz",
+      "Böyle düşünmene üzüldüm",
+      "Malesef sizle şuan konuşamam.."]),
 
     /*    BOT5     */
-    CharactersText(["Ben de yenilikleri severim. Adım Karakter5 ","Selam, ben Karakter5.",
-      "Sen karşılama komitesi misin? ne bu özgüven?","Çok naziksiniz","Böyle düşünmene üzüldüm","Malesef sizle şuan konuşamam.."]),
+    CharactersText(["Ben de yenilikleri severim. Adım Karakter5 ",
+      "Selam, ben Karakter5.",
+      "Sen karşılama komitesi misin? ne bu özgüven?",
+
+      "Çok naziksiniz",
+      "Böyle düşünmene üzüldüm",
+      "Malesef sizle şuan konuşamam.."]),
 
     /*  PLAYER -TextBot1        */
     CharactersText([
-      " Merhaba!!",
-      "Selamlar nasılsın",
-      "Tanışabilir miyiz? Okulda görmüştüm seni",
+      " Merhaba!!nnnnnnnn",
+      "Selamlar nasılsınnnnnnnnnn",
+      "Tanışabilir miyiz? Okulda görmüştüm seninnnnnnnnnnn",
 
       "Ben Karakter A, tanıştığıma memnun oldum",
       "Yoğunsan meşgul etmek istemem",
@@ -110,7 +120,77 @@ class CharactersTextRepository{
 
       "ListeBitti1","ListeBitti2", "ListeBitti3",
 
+      " sa","dsa","dsa","sda"]),
+
+    /*  PLAYER - Asano Akio       */
+    CharactersText([
+      "M-Merhaba Tanışıyoz mu",
+      "Sen de kimsin ?",
+      "Haha Merhaba dostum, İyidir senden?",
+
+      "Ben Karakter A, tanıştığıma memnun oldum",
+      "Yoğunsan meşgul etmek istemem",
+      "İstersen okulda kahve içebiliriz.",
+
+      "Okulda umarım görüşebiliriz. ",
+      "Sadece tanışmak istemiştim okulda görüşürüz!!",
+      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
+
+      "Text Bitti",
+      "Text Bitti",
+      "Text Bitti",
+
+      "ListeBitti1",
+      "ListeBitti2",
+      "ListeBitti3",
+
+      " sa",
+      "dsa",
+      "dsa",
+       ]),
+    /*  PLAYER - bot4       */
+    CharactersText([
+      "M-Merhaba Tanışıyor muyuz?",
+      "Sen de kimsin ?",
+      "Haha Merhaba dostum, İyidir senden?",
+
+      "Ben Karakter A, tanıştığıma memnun oldum",
+      "Yoğunsan meşgul etmek istemem",
+      "İstersen okulda kahve içebiliriz.",
+
+      "Okulda umarım görüşebiliriz. ",
+      "Sadece tanışmak istemiştim okulda görüşürüz!!",
+      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
+
+      "Text Bitti",
+      "Text Bitti",
+      "Text Bitti",
+
+      "ListeBitti1","ListeBitti2", "ListeBitti3",
+
+      " sa","dsa","dsa","sda"]),
+    /*  PLAYER - bot5      */
+    CharactersText([
+      "M-Merhaba Tanışıyor muyuz?",
+      "Sen de kimsin ?",
+      "Haha Merhaba dostum, İyidir senden?",
+
+      "Ben Karakter A, tanıştığıma memnun oldum",
+      "Yoğunsan meşgul etmek istemem",
+      "İstersen okulda kahve içebiliriz.",
+
+      "Okulda umarım görüşebiliriz. ",
+      "Sadece tanışmak istemiştim okulda görüşürüz!!",
+      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
+
+      "Text Bitti",
+      "Text Bitti",
+      "Text Bitti",
+
+      "ListeBitti1","ListeBitti2", "ListeBitti3",
+
       " sa","dsa","dsa","sda"])
+
   ];
 
 }
