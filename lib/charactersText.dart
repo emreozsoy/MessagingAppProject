@@ -35,8 +35,8 @@ class CharactersTextRepository{
 
     /* BOT2         */
     CharactersText([
-      "Selam",
-      "Selam, biraz meşgulüm şuanda sen nasılsın?",
+      "Merhaba",
+      "",
       "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
 
       "Ben adım da Deniz, bende memnun oldum",

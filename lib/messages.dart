@@ -6,7 +6,6 @@ class MessagesRepository{
     Messages(["Emre"],["Bot"]),
     /* BOT3 CHAT */
 
-<<<<<<< Updated upstream
     Messages(["Hey, Hey!! Naber, Dostum nasılsın?"],["Bot"]),
     /* BOT4 CHAT */
 
@@ -14,7 +13,6 @@ class MessagesRepository{
     /* BOT5 CHAT */
 
     Messages(["Merhaba","Ben"],["Bot","Bot"]),
-=======
     Messages(["Hayır"],["Bot"]),
     /* BOT4 CHAT */
 
@@ -22,7 +20,6 @@ class MessagesRepository{
     /* BOT5 CHAT */
 
     Messages(["Okulda görüşürüz"],["Bot"]),
->>>>>>> Stashed changes
 
 
   ];

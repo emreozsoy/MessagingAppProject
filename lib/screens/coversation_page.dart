@@ -359,7 +359,7 @@ class _ConversationPageState extends State<ConversationPage>
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            if(isMessageTrue()) ClipRRect(
+                            ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -393,13 +393,13 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-                                            .charactersText[widget.index + 5].text
+                                            .charactersText[5].text
                                             .elementAt(textPos),
                                         textAlign: TextAlign.center,
                                       ),
                               ),
                             ),
-                            if(isMessageTrue())ClipRRect(
+                            ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -433,17 +433,13 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-<<<<<<< Updated upstream
-                                            .charactersText[widget.index + 5].text
-=======
                                             .charactersText[widget.index+5].text
->>>>>>> Stashed changes
                                             .elementAt(textPos + 1),
                                         textAlign: TextAlign.center,
                                       ),
                               ),
                             ),
-                            if(isMessageTrue())ClipRRect(
+                            ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -477,7 +473,7 @@ class _ConversationPageState extends State<ConversationPage>
                                     ? Text("......")
                                     : Text(
                                         charactersTextRepository
-                                            .charactersText[widget.index + 5].text
+                                            .charactersText[5].text
                                             .elementAt(textPos + 2),
                                         textAlign: TextAlign.center,
                                       ),
@@ -716,15 +712,14 @@ class _ConversationPageState extends State<ConversationPage>
     }
   }
 
-    bool isMessageTrue(){
-    if(charactersTextRepository.charactersText[widget.index +5].text
-        .elementAt(textPos + 0) != "" && charactersTextRepository.charactersText[widget.index +5].text
-        .elementAt(textPos + 0)!="" ){
+    Future<bool> isMessageTrue() async{
+      if(charactersTextRepository.charactersText[widget.index].text
+          .elementAt(textPos + 0) != ""){
 
-      return false;
-    }
-    else{
-      return true;
-    }
+        return false;
+      }
+      else{
+        return true;
+      }
   }
 }
