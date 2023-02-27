@@ -549,7 +549,7 @@ class _ConversationPageState extends State<ConversationPage>
 
   Future<void> sendText(int whichText) async {
 
-    if(charactersPointRepository.characterPoint[widget.index].sumPoint > 10) {
+    if(charactersPointRepository.characterPoint[widget.index].sumPoint < 90) {
       List<String> divMsg =
       charactersTextRepository.charactersText[widget.index].text
           .elementAt(textPos + whichText).split("-");

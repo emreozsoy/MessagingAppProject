@@ -18,9 +18,9 @@ class CharactersTextRepository{
     //karakterimizi oluşturma ekranı ve bunu konuşmalara yansıtan kodlar
 
   CharactersText([
-  "Selam",
-  "Selam, - biraz meşgulüm şuanda sen nasılsın?",
-  "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
+  "Merhaba yeni nakil olan öğrenci sensin sanırım numaranı okul listesinde gördüm ve ekledim  🙂 ",
+  "Ben sınıf başkanı Hinata Talichie, aynı zamanda okul temsilcisiyim de..",
+  "Bir şeye ihtiyacın olursa söylemekten çekinme lütfen 🙋",
 
   "Ben adım - da -Deniz ,-bende, -memnun, -oldum",
   "Vaktimi belki- ayırabilirim senin için önemli bir konu mu?",
@@ -36,7 +36,7 @@ class CharactersTextRepository{
     /* BOT2         */
     CharactersText([
       "Merhaba",
-      "",
+      "heyyy",
       "Tanışalım ben Deniz, seni daha önce gördüğümü sanmıyorum.",
 
       "Ben adım da Deniz, bende memnun oldum",
@@ -52,13 +52,31 @@ class CharactersTextRepository{
 
     /*BOT3 Asano Akio */
     CharactersText([
-      "Hayır tabi ki, ismini sınıf listesinden gördüm hahahhah!",
-      "Ben Asano, dostum 😀",
-      "Süpeer, Okulda çok güzel kızlar olduğunu duydum dostumm!",
 
-      "Çok naziksiniz",
-      "Böyle düşünmene üzüldüm",
-      "Malesef sizle şuan konuşamam.."]),
+      "Merhaba Dostuuum evet aynı sınıftayız",
+      "Selam Bro! Hey seni sınıf listesinde görmüştüm",
+      "Hey Ezik olan sensin dostum",
+
+      "Merhaba Dostuuum evet aynı sınıftayız",
+      "Selam Bro! Hey seni sınıf listesinde görmüştüm",
+      "Hey Ezik olan sensin dostum",
+
+      "Ben Asano Dostum, ben de memnun oldum 🤣",
+      "Evet Dostum ben Asano ama bana *kızların gönlünü alan Asano* diyebilirsin 😀",
+      "Adını bilmiyorum ancak ben Asano sınıfta herkes tanır 😆"
+
+      "Konuşabileceğimiz bir sürü konu var. En son neler yaptın?",
+      "Sence kim?",
+      "Eh, senin gibi biri için ne bekleyebilirim ki? LOSER",
+
+      "Vay be, çok meşgulsün hahaha Ben de okulda oldukça yoğunum Ayrıca hafta sonları basketbol oynuyorum, sen de basketbol oynar mısın?",
+      "Hinata iyi bir öğrenci ama fazla sosyal, benim tercihim Akemi❣️olurdu. Senin favorin kim?",
+      "Seni isteyen olduğunu da düşünmüyorum 👏"
+
+      "Benim hobiler müzik, kitap ve yürüyüş… Senin en sevdiğin spor nedir?",
+      "Asano, Hinata ve Akemi hepsi iyiler ama benim favorim sen olabilirsin. 😉 Şaka yapıyorum, aslında hala favorim Akemi",
+      "Senin gibi eziklerle  zaman geçirmeyi sevmiyorum, hadi hoşçakal"
+    ]),
 
     /*      BOT4    */
     CharactersText(["Ben de yenilikleri severim. Adım  ",
@@ -78,11 +96,11 @@ class CharactersTextRepository{
       "Böyle düşünmene üzüldüm",
       "Malesef sizle şuan konuşamam.."]),
 
-    /*  PLAYER -TextBot1        */
+    /*  PLAYER -TextBot1  hinata      */
     CharactersText([
-      " Merhaba!!nnnnnnnn",
-      "Selamlar nasılsınnnnnnnnnn",
-      "Tanışabilir miyiz? Okulda görmüştüm seninnnnnnnnnnn",
+      "Merhaba, memnun oldum ben de @.... , teşekkür ederim aslında bir konuda yardıma ihtiyacım vardı okuldakilerle nasıl tanışabilirim +2",
+      "Merhaba, peki tamam",
+      "İlgilenmiyorum 👿",
 
       "Ben Karakter A, tanıştığıma memnun oldum",
       "Yoğunsan meşgul etmek istemem",
@@ -124,17 +142,30 @@ class CharactersTextRepository{
 
     /*  PLAYER - Asano Akio       */
     CharactersText([
-      "M-Merhaba Tanışıyoz mu",
-      "Sen de kimsin ?",
-      "Haha Merhaba dostum, İyidir senden?",
+      "Merhaba Dostum! bizim sınıftan olmalısın",
+      "Selam Bro!",
+      "Hey Ezik!",
 
-      "Ben Karakter A, tanıştığıma memnun oldum",
-      "Yoğunsan meşgul etmek istemem",
-      "İstersen okulda kahve içebiliriz.",
+      "Memnun oldum ben @...",
+      "Tanışalım Ben @...",
+      "Hahahaha LOL!",
 
-      "Okulda umarım görüşebiliriz. ",
-      "Sadece tanışmak istemiştim okulda görüşürüz!!",
-      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
+
+      "Hey sınıftakilerle nasıl konuşabileceğimizi biliyor musun?",
+      "Sınıfın en güzel kızı hangisi sence? :)",
+      "Ben sınıfta iken hiç şansın yok dostum 😉",
+
+      "Son zamanlarda yoğun bir dönem geçiriyorum, okul, iş ve sporu bir arada yürütmeye çalışıyorum Dostum, Sen neler yapıyorsun?",
+      "Bence en güzeli Hinata olabilir, ama sen ne düşünüyorsun?",
+      "Seninle takılmak istemiyorum, git başka bir yere!",
+
+      "Evet, basketbol oynamak çok keyifli. Belki bir gün seninle oynarız 😅 Senin hobilerin neler?",
+      "Hmmm, Hinata ve Akemi ikisi de iyiler ama benim favorim Asano. Çok havalı biri 😀",
+      "Senin gibi eziklerle konuşmak gerçekten  sıkıcı",
+
+      "Benim favori sporum basketboll,  Asano kendine güveniyosun ama sanırım o kadar da kötü değil. 😄",
+      "Neyseki bu bir şaka daha ileri gitmemesine sevindim 😂",
+      "Böylece başkasının işine karışmamış olursun 🦾",
 
       "Text Bitti",
       "Text Bitti",
