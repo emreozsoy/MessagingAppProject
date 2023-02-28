@@ -62,6 +62,7 @@ class _ConversationPageState extends State<ConversationPage>
   int day = 0;
   double _imgWidth=180;
 
+
   @override
   initState() {
     WidgetsFlutterBinding.ensureInitialized();
@@ -195,8 +196,7 @@ class _ConversationPageState extends State<ConversationPage>
                   builder: (context) => MyHomePage(
                       title: 'e',
                       lastText:
-                          '${prefs.getStringList('messages${widget.index}')?.last}'),
-                ),
+                      '${prefs.getStringList('messages${widget.index}')?.last}'),                ),
               );
             },
           ),
@@ -299,6 +299,7 @@ class _ConversationPageState extends State<ConversationPage>
                       messagesRepository.messages[widget.index].msg.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
+
                     /* _scrollController.animateTo(
                       _scrollController.position.maxScrollExtent,
                       curve: Curves.ease,
@@ -312,7 +313,7 @@ class _ConversationPageState extends State<ConversationPage>
                                 "Bot" //messagesRepository.messages[widget.index].msg.last.endsWith(" ")
                             ? Alignment.centerRight
                             : Alignment.centerLeft,
-                        child: ClipRRect(
+                        child:ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: Container(
                             padding: EdgeInsets.all(8.0),
@@ -321,32 +322,29 @@ class _ConversationPageState extends State<ConversationPage>
                             ),
                             child: Stack(
                               children: [
-                                messagesRepository
-                                        .messages[widget.index].msg[index]
-                                        .contains(".png")
+                                messagesRepository.messages[widget.index].msg[index]
+                                    .contains(".png")
                                     ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              print("NEDEN ");
-                                              _imgWidth = _imgWidth == 180.0 ? 360.0 : 180.0;
-                                            });
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        print("NEDEN ");
+                                        _imgWidth = _imgWidth == 180.0 ? 360.0 : 180.0;
+                                      });
 
-                                          },
-                                          child: Image.asset(
-                                              messagesRepository
-                                                  .messages[widget.index]
-                                                  .msg[index],
-                                              width: _imgWidth,
-                                              height:_imgWidth,
-                                              fit: BoxFit.cover),
-                                        ),
-                                      )
-                                    : Text(
+                                    },
+                                    child: Image.asset(
                                         messagesRepository
-                                            .messages[widget.index].msg[index],
-                                        style: TextStyle(color: Colors.white)),
+                                            .messages[widget.index]
+                                            .msg[index],
+                                        width: _imgWidth,
+                                        height:_imgWidth,
+                                        fit: BoxFit.cover),
+                                  ),
+                                )
+                                    : Text(messagesRepository.messages[widget.index].msg[index],
+                                    style: TextStyle(color: Colors.white)),
                               ],
                             ),
                           ),
@@ -375,8 +373,7 @@ class _ConversationPageState extends State<ConversationPage>
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-<<<<<<< Updated upstream
-                            ClipRRect(
+                            if (isMessageTrue(0))ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -414,94 +411,49 @@ class _ConversationPageState extends State<ConversationPage>
                                             .elementAt(textPos),
                                         textAlign: TextAlign.center,
                                       ),
-=======
-                            if (isMessageTrue(0))
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(25.0),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_isButtonDisabled) {
-                                      return null;
-                                    } else {
-                                      _isButtonDisabled = true;
-                                      setState(() {
-                                        playerResponse(0);
-                                        botResponse(0);
-                                      });
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
-                                    }
-                                    charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .sumPoint +=
-                                        charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos];
-                                    if (charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos] >=
-                                        0) {
-                                      goodAnswr();
-                                    } else {
-                                      badAnswr();
-                                    }
-                                  },
-                                  child: _isButtonDisabled
-                                      ? Text("......")
-                                      : Text(
-                                          charactersTextRepository
-                                              .charactersText[5].text
-                                              .elementAt(textPos),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                ),
->>>>>>> Stashed changes
                               ),
-                            if (isMessageTrue(1))
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(25.0),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_isButtonDisabled) {
-                                      return null;
-                                    } else {
-                                      _isButtonDisabled = true;
-                                      setState(() {
-                                        playerResponse(1);
-                                        botResponse(1);
-                                      });
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
-                                    }
-                                    charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .sumPoint +=
-                                        charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos + 1];
-                                    if (charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos + 1] >=
-                                        0) {
-                                      goodAnswr();
-                                    } else {
-                                      badAnswr();
-                                    }
-                                  },
-                                  child: _isButtonDisabled
-                                      ? Text("......")
-                                      : Text(
-                                          charactersTextRepository
-                                              .charactersText[widget.index + 5]
-                                              .text
-                                              .elementAt(textPos + 1),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                ),
-                              ),
-<<<<<<< Updated upstream
                             ),
-                            ClipRRect(
+                            if (isMessageTrue(1))ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_isButtonDisabled) {
+                                    return null;
+                                  } else {
+                                    _isButtonDisabled = true;
+                                    setState(() {
+                                      playerResponse(1);
+                                      botResponse(1);
+                                    });
+                                    _scrollController.jumpTo(_scrollController
+                                        .position.maxScrollExtent);
+                                  }
+                                  charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .sumPoint +=
+                                      charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 1];
+                                  if (charactersPointRepository
+                                          .characterPoint[widget.index]
+                                          .point[textPos + 1] >=
+                                      0) {
+                                    goodAnswr();
+                                  } else {
+                                    badAnswr();
+                                  }
+                                },
+                                child: _isButtonDisabled
+                                    ? Text("......")
+                                    : Text(
+                                        charactersTextRepository
+                                            .charactersText[widget.index+5].text
+                                            .elementAt(textPos + 1),
+                                        textAlign: TextAlign.center,
+                                      ),
+                              ),
+                            ),
+                            if (isMessageTrue(2))ClipRRect(
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -539,49 +491,8 @@ class _ConversationPageState extends State<ConversationPage>
                                             .elementAt(textPos + 2),
                                         textAlign: TextAlign.center,
                                       ),
-=======
-                            if (isMessageTrue(2))
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(25.0),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_isButtonDisabled) {
-                                      return null;
-                                    } else {
-                                      _isButtonDisabled = true;
-                                      setState(() {
-                                        playerResponse(2);
-                                        botResponse(2);
-                                      });
-                                      _scrollController.jumpTo(_scrollController
-                                          .position.maxScrollExtent);
-                                    }
-                                    charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .sumPoint +=
-                                        charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos + 2];
-                                    if (charactersPointRepository
-                                            .characterPoint[widget.index]
-                                            .point[textPos + 2] >=
-                                        0) {
-                                      goodAnswr();
-                                    } else {
-                                      badAnswr();
-                                    }
-                                  },
-                                  child: _isButtonDisabled
-                                      ? Text("......")
-                                      : Text(
-                                          charactersTextRepository
-                                              .charactersText[5].text
-                                              .elementAt(textPos + 2),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                ),
->>>>>>> Stashed changes
                               ),
+                            ),
                           ],
                         ),
                       ),
@@ -632,17 +543,17 @@ class _ConversationPageState extends State<ConversationPage>
   Future<void> botResponse(int whichText) async {
     type = 1;
 
-    await sendText(whichText);
+  await sendText(whichText);
 
-    await Future.delayed(Duration(seconds: random(1, 2)));
-    setState(() {
-      type = 3;
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 300),
-      );
-    });
+      await Future.delayed(Duration(seconds: random(1, 2)));
+      setState(() {
+        type = 3;
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          curve: Curves.ease,
+          duration: const Duration(milliseconds: 300),
+        );
+      });
 
     setState(() {
       _isButtonDisabled = false;
@@ -651,25 +562,18 @@ class _ConversationPageState extends State<ConversationPage>
   }
 
   Future<void> sendText(int whichText) async {
-<<<<<<< Updated upstream
 
     if(charactersPointRepository.characterPoint[widget.index].sumPoint < 90) {
       List<String> divMsg =
       charactersTextRepository.charactersText[widget.index].text
           .elementAt(textPos + whichText).split("-");
-=======
-    if (charactersPointRepository.characterPoint[widget.index].sumPoint < 90) {
-      List<String> divMsg = charactersTextRepository
-          .charactersText[widget.index].text
-          .elementAt(textPos + whichText)
-          .split("-");
->>>>>>> Stashed changes
 
       if (1 < divMsg.length) {
         int i = 0;
 
         while (i < divMsg.length) {
-          messagesRepository.messages[widget.index].user.add("Bot");
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
           await Future.delayed(Duration(seconds: random(1, 2)));
 
           type = random(0, 2);
@@ -679,20 +583,26 @@ class _ConversationPageState extends State<ConversationPage>
             i++;
           });
 
+
           await Future.delayed(Duration(seconds: random(0, 1)));
+
 
           _scrollController.animateTo(
               _scrollController.position.maxScrollExtent,
               curve: Curves.ease,
               duration: const Duration(milliseconds: 300));
         }
-      } else {
+      }
+
+      else{
         await Future.delayed(Duration(seconds: random(1, 2)));
         setState(() {
           type = 2;
-          messagesRepository.messages[widget.index].user.add("Bot");
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
 
-          messagesRepository.messages[widget.index].msg.add(divMsg.first);
+          messagesRepository.messages[widget.index].msg.add(
+              divMsg.first);
 
           _scrollController.animateTo(
             _scrollController.position.maxScrollExtent,
@@ -701,19 +611,20 @@ class _ConversationPageState extends State<ConversationPage>
           );
         });
       }
-    } else {
+    }
+    else{
       CharactersSecondText charactersSecondText = CharactersSecondText();
 
-      List<String> divMsg = charactersSecondText
-          .charactersText[widget.index].text
-          .elementAt(textPos + whichText)
-          .split("-");
+      List<String> divMsg =
+      charactersSecondText.charactersText[widget.index].text
+          .elementAt(textPos + whichText).split("-");
 
       if (1 < divMsg.length) {
         int i = 0;
 
         while (i < divMsg.length) {
-          messagesRepository.messages[widget.index].user.add("Bot");
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
           await Future.delayed(Duration(seconds: random(1, 2)));
 
           type = random(0, 2);
@@ -723,20 +634,25 @@ class _ConversationPageState extends State<ConversationPage>
             i++;
           });
 
+
           await Future.delayed(Duration(seconds: random(0, 1)));
+
 
           _scrollController.animateTo(
               _scrollController.position.maxScrollExtent,
               curve: Curves.ease,
               duration: const Duration(milliseconds: 300));
         }
-      } else {
+      }
+      else{
         await Future.delayed(Duration(seconds: random(1, 2)));
         setState(() {
           type = 2;
-          messagesRepository.messages[widget.index].user.add("Bot");
+          messagesRepository
+              .messages[widget.index].user.add("Bot");
 
-          messagesRepository.messages[widget.index].msg.add(divMsg.first);
+          messagesRepository.messages[widget.index].msg.add(
+              divMsg.first);
 
           _scrollController.animateTo(
             _scrollController.position.maxScrollExtent,
@@ -745,6 +661,7 @@ class _ConversationPageState extends State<ConversationPage>
           );
         });
       }
+
     }
   }
 
@@ -774,7 +691,7 @@ class _ConversationPageState extends State<ConversationPage>
         charactersPointRepository.characterPoint[widget.index].sumPoint);
     await prefs.setInt('day', day);
 
-    await prefs.clear(); //delete all prefs
+  await prefs.clear(); //delete all prefs
   }
 
   Path _buildHeartPath() {
@@ -811,7 +728,7 @@ class _ConversationPageState extends State<ConversationPage>
 
   bool isMessageTrue(int whichText) {
     if (charactersTextRepository.charactersText[widget.index + 5].text
-            .elementAt(textPos + whichText) !=
+        .elementAt(textPos + whichText) !=
         "") {
       return true;
     } else {
