@@ -1,6 +1,5 @@
-# untitled
+# Flutter/ Texting Game
 
-A new Flutter project.
 
 ## Getting Started
 
