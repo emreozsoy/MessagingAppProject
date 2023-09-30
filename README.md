@@ -1,15 +1,27 @@
-# Flutter/ Texting Game
+# Flutter/ Messaging Game
+- This project has been developed for BM331 - Computer Engineering Design Work I course, aiming to create a gamified messaging application using Flutter.
+- You can access the project document on OverLeaf using the following link.[Project Link](https://www.overleaf.com/read/fhznvjznwyzk "Project Document") 
+## Acknowledgment
+I would like to express my gratitude to my esteemed instructor and advisor, Prof. Dr. Cihan KARAKUZU, for their guidance and unwavering support throughout the entire preparation of this project, from start to finish.
+
+## Project Objective
+
+The aim of the project is to create a game application that can be used on mobile devices
+and provides interactive communication with the user based on visuals and stories.
+## Scope of Project
+
+Within the scope of the project, in order to develop an application supported by cross mo-
+bile platforms over Android Studio, it was designed visually via Figma and implemented
+in Flutter.
+
+## Results
+
+This application is able to run on mobile devices with Android/IOS operating systems
+and interactively communicates with the user to effectively deliver the story. The story is
+presented with the support of text and visual elements, which can also spark interest in a
+wider audience. As a result, it offers a different experience for the user in terms of mobile
+gaming.
+iii
 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
