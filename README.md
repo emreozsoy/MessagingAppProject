@@ -1,6 +1,6 @@
 # Flutter/ Messaging Game
 - This project has been developed for BM331 - Computer Engineering Design Work I course, aiming to create a gamified messaging application using Flutter.
-- You can access the project document on OverLeaf using the following link.[Project Link](https://www.overleaf.com/read/fhznvjznwyzk "Project Document") 
+- You can access the project document on Overleaf using the following link.[Project Link](https://www.overleaf.com/read/fhznvjznwyzk "Project Document") 
 ## Acknowledgment
 I would like to express my gratitude to my esteemed instructor and advisor, Prof. Dr. Cihan KARAKUZU, for their guidance and unwavering support throughout the entire preparation of this project, from start to finish.
 
