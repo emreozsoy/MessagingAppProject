@@ -8,6 +8,10 @@ I would like to express my gratitude to my esteemed instructor and advisor, Prof
 
 The aim of the project is to create a game application that can be used on mobile devices
 and provides interactive communication with the user based on visuals and stories.
+## ScreenShots From Project
+![picture alt](http://via.placeholder.com/200x150 "")
+
+
 ## Scope of Project
 
 Within the scope of the project, in order to develop an application supported by cross mo-
@@ -21,7 +25,7 @@ and interactively communicates with the user to effectively deliver the story. T
 presented with the support of text and visual elements, which can also spark interest in a
 wider audience. As a result, it offers a different experience for the user in terms of mobile
 gaming.
-iii
+
 
 
 
