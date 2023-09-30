@@ -9,8 +9,8 @@ I would like to express my gratitude to my esteemed instructor and advisor, Prof
 The aim of the project is to create a game application that can be used on mobile devices
 and provides interactive communication with the user based on visuals and stories.
 ## ScreenShots From Project
-![picture alt](http://via.placeholder.com/200x150 "")
-
+![picture alt](https://raw.githubusercontent.com/emreozsoy/MessagingAppProject/master/images/ChatMenu.PNG?token=GHSAT0AAAAAACH2WNDVE4NFGQNFZXOTUU36ZIYRQBA "e")
+![picture alt](https://raw.githubusercontent.com/emreozsoy/MessagingAppProject/master/images/MainMenu.PNG?token=GHSAT0AAAAAACH2WNDU3T26JOA77AZXHHZSZIYRQQQ "")
 
 ## Scope of Project
 
