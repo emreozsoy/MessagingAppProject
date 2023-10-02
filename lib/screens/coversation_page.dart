@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:untitled/characterTextPoint.dart';
 import 'package:untitled/characters.dart';
+import 'package:untitled/charactersMainText.dart';
 import 'package:untitled/charactersSecondText.dart';
 import 'package:untitled/charactersText.dart';
 import 'package:untitled/day_mechanic.dart';
@@ -43,7 +44,7 @@ class _ConversationPageState extends State<ConversationPage>
   int firstEntry = 0;
   int? relationPoint;
   int energy = 10;
-
+  CharactersMainText mainCharacterRepository = CharactersMainText();
   CharactersRepository charactersRepository = CharactersRepository();
   CharactersTextRepository charactersTextRepository =
       CharactersTextRepository();
@@ -241,7 +242,7 @@ class _ConversationPageState extends State<ConversationPage>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.fromLTRB(0,0,8.0,0),
                 child: LiquidCustomProgressIndicator(
                     value: _animationController!.value,
                     direction: Axis.vertical,
@@ -329,7 +330,6 @@ class _ConversationPageState extends State<ConversationPage>
                                   child: InkWell(
                                     onTap: () {
                                       setState(() {
-                                        print("NEDEN ");
                                         _imgWidth = _imgWidth == 180.0 ? 360.0 : 180.0;
                                       });
 
@@ -406,8 +406,7 @@ class _ConversationPageState extends State<ConversationPage>
                                 child: _isButtonDisabled
                                     ? Text("......")
                                     : Text(
-                                        charactersTextRepository
-                                            .charactersText[widget.index +5].text
+                                        mainCharacterRepository.characterMainText[widget.index].text
                                             .elementAt(textPos),
                                         textAlign: TextAlign.center,
                                       ),
@@ -417,7 +416,8 @@ class _ConversationPageState extends State<ConversationPage>
                               borderRadius: BorderRadius.circular(25.0),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (_isButtonDisabled) {
+                                  if (_isButtonDisabled || mainCharacterRepository.characterMainText[widget.index].text
+                                      .elementAt(textPos + 1) == "") {
                                     return null;
                                   } else {
                                     _isButtonDisabled = true;
@@ -446,9 +446,8 @@ class _ConversationPageState extends State<ConversationPage>
                                 child: _isButtonDisabled
                                     ? Text("......")
                                     : Text(
-                                        charactersTextRepository
-                                            .charactersText[widget.index+5].text
-                                            .elementAt(textPos + 1),
+                                  mainCharacterRepository.characterMainText[widget.index].text
+                                      .elementAt(textPos + 1),
                                         textAlign: TextAlign.center,
                                       ),
                               ),
@@ -458,6 +457,7 @@ class _ConversationPageState extends State<ConversationPage>
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_isButtonDisabled) {
+                                    print("EMREEEE");
                                     return null;
                                   } else {
                                     _isButtonDisabled = true;
@@ -486,9 +486,8 @@ class _ConversationPageState extends State<ConversationPage>
                                 child: _isButtonDisabled
                                     ? Text("......")
                                     : Text(
-                                        charactersTextRepository
-                                            .charactersText[widget.index +5].text
-                                            .elementAt(textPos + 2),
+                                  mainCharacterRepository.characterMainText[widget.index].text
+                                      .elementAt(textPos + 2),
                                         textAlign: TextAlign.center,
                                       ),
                               ),
@@ -528,8 +527,7 @@ class _ConversationPageState extends State<ConversationPage>
       type = 3;
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
 
-      messagesRepository.messages[widget.index].msg.add(charactersTextRepository
-          .charactersText[widget.index + 5].text
+      messagesRepository.messages[widget.index].msg.add(mainCharacterRepository.characterMainText[widget.index].text
           .elementAt(textPos + whichText));
 
       messagesRepository.messages[widget.index].user.add("Player");
@@ -691,7 +689,7 @@ class _ConversationPageState extends State<ConversationPage>
         charactersPointRepository.characterPoint[widget.index].sumPoint);
     await prefs.setInt('day', day);
 
-  await prefs.clear(); //delete all prefs
+  //await prefs.clear(); //delete all prefs
   }
 
   Path _buildHeartPath() {
@@ -727,7 +725,7 @@ class _ConversationPageState extends State<ConversationPage>
   }
 
   bool isMessageTrue(int whichText) {
-    if (charactersTextRepository.charactersText[widget.index + 5].text
+    if (mainCharacterRepository.characterMainText[widget.index].text
         .elementAt(textPos + whichText) !=
         "") {
       return true;

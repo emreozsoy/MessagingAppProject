@@ -8,28 +8,34 @@ import 'package:untitled/news.dart';
 import 'package:untitled/screens/coversation_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/screens/createAvatarScreen.dart';
 import 'package:untitled/screens/profileScreen.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  //Icons.push_pin                       MaterialPageRoute(builder: (context) => ConversationPage()),
-  runApp(MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  final x=1;
+  //final x = prefs.getInt('X') ?? 0;
+  runApp(MyApp(x: x,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp( {Key? key}) : super(key: key);
+  final int x;
+  const MyApp( {Key? key, required this.x}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    CreateAvatarScreen createAvatarScreen = CreateAvatarScreen();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: const MyHomePage(title: 'Chat Messenger', lastText: 'e',),
+      home: x == 1 ? MyHomePage(title: 'Chat Messenger', lastText: 'e',) : createAvatarScreen,
     );
   }
 }
+
 
 // ignore: must_be_immutable
 class MyHomePage extends StatefulWidget {
@@ -185,6 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       print(
           "merhaba ${newsRepository.news[0].newsSubtitle[i].substring(4, 5)} ,$count");
+
     }
     return count;
   }
@@ -294,7 +301,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       future: subTitleTxt(index),
                       builder:
                           (BuildContext context, AsyncSnapshot<String> text) {
-                        return Text(text.data ?? "- - -");
+                        if(text.data !=null){
+                          if(text.data!.contains("/")){
+                            return Text("🖼️");
+                          }
+                          else{
+                            return Text(text.data ?? "- - -");
+                          }
+
+                        }
+                        else{
+                          return Text(text.data ?? "- - -");
+                        }
+
                       }),
 
                 );

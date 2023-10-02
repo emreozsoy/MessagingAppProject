@@ -18,11 +18,11 @@ class CharactersTextRepository{
     //karakterimizi oluşturma ekranı ve bunu konuşmalara yansıtan kodlar
 
   CharactersText([
-  "Merhaba yeni nakil olan öğrenci sensin sanırım numaranı okul listesinde gördüm ve ekledim  🙂 ",
+  "Aaa evet - daha önce tanışmamıştık sanırım - Ben Hinata ",
   "Ben sınıf başkanı Hinata Talichie, aynı zamanda okul temsilcisiyim de..",
   "Bir şeye ihtiyacın olursa söylemekten çekinme lütfen 🙋",
 
-  "Ben adım - da -Deniz ,-bende, -memnun, -oldum",
+  "Benim adım - da -Deniz ,-bende, -memnun, -oldum",
   "Vaktimi belki- ayırabilirim senin için önemli bir konu mu?",
   "Bir kahveye - hayır demem",
 
@@ -31,6 +31,13 @@ class CharactersTextRepository{
   "images/Musuem.png",
 
   "Orda görüşmek üzere!",
+  "Orda görüşmek üzere!",
+  "Orda görüşmek üzere!",
+
+  "Orda görüşmek üzere!",
+  "Orda görüşmek üzere!",
+  "Orda görüşmek üzere!"
+
   ]),
 
     /* BOT2         */
@@ -43,11 +50,14 @@ class CharactersTextRepository{
       "Vaktimi belki ayırabilirim senin için önemli bir konu mu?",
       "Bir kahveye hayır demem",
 
-      "Görüşmek üzere!!",
-      "Bye byee!",
+      "images/hand.png",
+      "images/NoHandShake.png",
       "images/Musuem.png",
 
+      "Orda görüşmek üzere!",
+      "Orda görüşmek üzere!",
       "Orda görüşmek üzere!"
+
     ]),
 
     /*BOT3 Asano Akio */
@@ -76,6 +86,11 @@ class CharactersTextRepository{
       "Benim hobiler müzik, kitap ve yürüyüş… Senin en sevdiğin spor nedir?",
       "Asano, Hinata ve Akemi hepsi iyiler ama benim favorim sen olabilirsin. 😉 Şaka yapıyorum, aslında hala favorim Akemi",
       "Senin gibi eziklerle  zaman geçirmeyi sevmiyorum, hadi hoşçakal"
+
+      " ",
+      " ",
+      " "
+
     ]),
 
     /*      BOT4    */
@@ -88,7 +103,8 @@ class CharactersTextRepository{
       "Malesef sizle şuan konuşamam.."]),
 
     /*    BOT5     */
-    CharactersText(["Ben de yenilikleri severim. Adım Karakter5 ",
+    CharactersText([
+      "Ben de yenilikleri severim. Adım Karakter5 ",
       "Selam, ben Karakter5.",
       "Sen karşılama komitesi misin? ne bu özgüven?",
 
@@ -96,131 +112,7 @@ class CharactersTextRepository{
       "Böyle düşünmene üzüldüm",
       "Malesef sizle şuan konuşamam.."]),
 
-    /*  PLAYER -TextBot1  hinata      */
-    CharactersText([
-      "Merhaba, memnun oldum ben de @.... , teşekkür ederim aslında bir konuda yardıma ihtiyacım vardı okuldakilerle nasıl tanışabilirim +2",
-      "Merhaba, peki tamam",
-      "İlgilenmiyorum 👿",
 
-      "Ben Karakter A, tanıştığıma memnun oldum",
-      "Yoğunsan meşgul etmek istemem",
-      "İstersen okulda kahve içebiliriz.",
-
-      "Okulda umarım görüşebiliriz. ",
-      "Sadece tanışmak istemiştim okulda görüşürüz!!",
-      "Tamamdır byee",
-
-      "----",
-      "----",
-      "----",
-
-      "ListeBitti1","ListeBitti2", "ListeBitti3",
-
-      " sa","dsa","dsa","sda"]),
-
-    /*  PLAYER -TextBot2        */
-    CharactersText([
-      "Merhaba!!",
-      "Selamlar nasılsın",
-      "Tanışabilir miyiz? Okulda görmüştüm seni",
-
-      "Ben Karakter A, tanıştığıma memnun oldum",
-      "Yoğunsan meşgul etmek istemem",
-      "İstersen okulda kahve içebiliriz.",
-
-      "Okulda umarım görüşebiliriz. ",
-      "Sadece tanışmak istemiştim okulda görüşürüz!!",
-      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
-
-      "Text Bitti",
-      "Text Bitti",
-      "Text Bitti",
-
-      "ListeBitti1","ListeBitti2", "ListeBitti3",
-
-      " sa","dsa","dsa","sda"]),
-
-    /*  PLAYER - Asano Akio       */
-    CharactersText([
-      "Merhaba Dostum! bizim sınıftan olmalısın",
-      "Selam Bro!",
-      "Hey Ezik!",
-
-      "Memnun oldum ben @...",
-      "Tanışalım Ben @...",
-      "Hahahaha LOL!",
-
-
-      "Hey sınıftakilerle nasıl konuşabileceğimizi biliyor musun?",
-      "Sınıfın en güzel kızı hangisi sence? :)",
-      "Ben sınıfta iken hiç şansın yok dostum 😉",
-
-      "Son zamanlarda yoğun bir dönem geçiriyorum, okul, iş ve sporu bir arada yürütmeye çalışıyorum Dostum, Sen neler yapıyorsun?",
-      "Bence en güzeli Hinata olabilir, ama sen ne düşünüyorsun?",
-      "Seninle takılmak istemiyorum, git başka bir yere!",
-
-      "Evet, basketbol oynamak çok keyifli. Belki bir gün seninle oynarız 😅 Senin hobilerin neler?",
-      "Hmmm, Hinata ve Akemi ikisi de iyiler ama benim favorim Asano. Çok havalı biri 😀",
-      "Senin gibi eziklerle konuşmak gerçekten  sıkıcı",
-
-      "Benim favori sporum basketboll,  Asano kendine güveniyosun ama sanırım o kadar da kötü değil. 😄",
-      "Neyseki bu bir şaka daha ileri gitmemesine sevindim 😂",
-      "Böylece başkasının işine karışmamış olursun 🦾",
-
-      "Text Bitti",
-      "Text Bitti",
-      "Text Bitti",
-
-      "ListeBitti1",
-      "ListeBitti2",
-      "ListeBitti3",
-
-      " sa",
-      "dsa",
-      "dsa",
-       ]),
-    /*  PLAYER - bot4       */
-    CharactersText([
-      "M-Merhaba Tanışıyor muyuz?",
-      "Sen de kimsin ?",
-      "Haha Merhaba dostum, İyidir senden?",
-
-      "Ben Karakter A, tanıştığıma memnun oldum",
-      "Yoğunsan meşgul etmek istemem",
-      "İstersen okulda kahve içebiliriz.",
-
-      "Okulda umarım görüşebiliriz. ",
-      "Sadece tanışmak istemiştim okulda görüşürüz!!",
-      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
-
-      "Text Bitti",
-      "Text Bitti",
-      "Text Bitti",
-
-      "ListeBitti1","ListeBitti2", "ListeBitti3",
-
-      " sa","dsa","dsa","sda"]),
-    /*  PLAYER - bot5      */
-    CharactersText([
-      "M-Merhaba Tanışıyor muyuz?",
-      "Sen de kimsin ?",
-      "Haha Merhaba dostum, İyidir senden?",
-
-      "Ben Karakter A, tanıştığıma memnun oldum",
-      "Yoğunsan meşgul etmek istemem",
-      "İstersen okulda kahve içebiliriz.",
-
-      "Okulda umarım görüşebiliriz. ",
-      "Sadece tanışmak istemiştim okulda görüşürüz!!",
-      "Kütüphanede afişinden haberin var mı? Orda kahve içebiliriz?",
-
-      "Text Bitti",
-      "Text Bitti",
-      "Text Bitti",
-
-      "ListeBitti1","ListeBitti2", "ListeBitti3",
-
-      " sa","dsa","dsa","sda"])
 
   ];
 
