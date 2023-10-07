@@ -14,9 +14,7 @@ and provides interactive communication with the user based on visuals and storie
 
 ## Scope of Project
 
-Within the scope of the project, in order to develop an application supported by cross mo-
-bile platforms over Android Studio, it was designed visually via Figma and implemented
-in Flutter.
+Within the scope of the project, in order to develop an application supported by cross-mobile platforms over Android Studio, it was designed visually via Figma and implemented in Flutter.
 
 ## Results
 
